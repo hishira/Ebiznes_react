@@ -9,7 +9,8 @@ import Categories from "./components/Categories";
 import Subcategory from "./components/Subcategory"
 import Header from "./components/Header";
 import ProductsBySubcategory from "./components/ProductBySubcategory";
-import Body from "./components/Body";
+import Login from "./components/Login";
+import Register from "./components/Register";
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,8 @@ function App() {
         <Route path='/categories' component={Categories}/>
         <Route path="/cat/:id/subcategories" component={Subcategory}/>
         <Route path='/subcat/:id/products' component={ProductsBySubcategory}/>
+        <Route path='/login' component={Login}/>
+        <Route path='/register' component={Register}/>
     </div>
   )
 }

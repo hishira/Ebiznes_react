@@ -28,6 +28,9 @@ export default function ButtonAppBar() {
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+    const handleLogin = () =>{
+        history.push('/login')
+    }
     const  handleKategorie = (event) =>{
         history.push('/categories')
     };
@@ -55,7 +58,7 @@ export default function ButtonAppBar() {
                     <Typography variant="h6" className={classes.title}>
                         E-Sklep
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Button color="inherit" onClick={handleLogin}>Login</Button>
                 </Toolbar>
             </AppBar>
         </div>
