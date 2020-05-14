@@ -8,6 +8,7 @@ import './App.css';
 import Categories from "./components/Categories";
 import Subcategory from "./components/Subcategory"
 import Header from "./components/Header";
+import ProductsBySubcategory from "./components/ProductBySubcategory";
 import Body from "./components/Body";
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Header/>
         <Route path='/categories' component={Categories}/>
         <Route path="/cat/:id/subcategories" component={Subcategory}/>
+        <Route path='/subcat/:id/products' component={ProductsBySubcategory}/>
     </div>
   )
 }

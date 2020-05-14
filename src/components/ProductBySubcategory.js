@@ -1,50 +1,42 @@
-import {getSubcategoriesByCateogryId} from "../Api/Subcategory";
-
 import React,{Component} from "react";
+import {getProductsBySubCategoryId} from "../Api/Products";
+import ActiveLastBreadcrumb from "./Breadcumb";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import ActiveLastBreadcrumb from "./Breadcumb";
-import history from "../history";
 
-class Subcategory extends Component{
+class ProductsBySubcategory extends Component{
     constructor() {
         super();
         this.state = {
-            subcategories : []
+            prodsubcat: []
         }
-        this.handleClick = this.handleClick.bind(this)
     }
-    handleClick(id){
-        history.entries = []
-        history.index = 0
-        history.push(`/subcat/${id}/products`)
-    }
-    componentDidMount() {
+    async componentDidMount() {
         const {match:{params}} = this.props
-        getSubcategoriesByCateogryId(params.id).then(data=>{
-            this.setState({subcategories: data})
+        getProductsBySubCategoryId(params.id).then(dane=>{
+            this.setState({prodsubcat:dane})
         })
     }
     render() {
-        return (
+        return(
             <div>
                 <div className="breadcumb">
                     <ActiveLastBreadcrumb alldata={[{name:"Home"},{name:"Kategorie"}]}/>
                 </div>
                 <h1>Podkategorie: </h1>
                 <div >
-                    {this.state.subcategories.map(cat=>{
+                    {this.state.prodsubcat.map(prod=>{
                         return (
-                            <Card onClick={this.handleClick.bind(this,cat.id)} key={cat.id} >
+                            <Card  key={prod.id} >
                                 <CardActionArea>
-                                    <CardContent key={cat.id}>
+                                    <CardContent key={prod.id}>
                                         <Typography  gutterBottom variant="h5" component="h2">
-                                            {cat.name}
+                                            {prod.name}
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
-                                            {cat.description}
+                                            {prod.description}
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
@@ -56,4 +48,4 @@ class Subcategory extends Component{
         )
     }
 }
-export default Subcategory
+export default  ProductsBySubcategory

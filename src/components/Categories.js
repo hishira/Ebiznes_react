@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import './Categories.css'
 import history from "../history";
+import ActiveLastBreadcrumb from "./Breadcumb";
 class Categories extends Component{
     constructor() {
         super();
@@ -30,6 +31,9 @@ class Categories extends Component{
         render(){
             return (
                 <div>
+                    <div className="breadcumb">
+                        <ActiveLastBreadcrumb alldata={[{name:"Home"}]}/>
+                    </div>
                     <h1>Kategorie: </h1>
                     <div className="categories">
                         {this.state.categories.map(cat=>{
