@@ -1,14 +1,13 @@
-const fetchObject = {
-    mode: "cors",
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'http://localhost:3000',
-    },
-    method: "GET"
-}
+import {fetchObject, createApiLink,createApiLinkById} from "./ApiConfig";
 async function getSubCategories(){
-    return fetch("http://localhost:9090/subcategoriesjson ",fetchObject)
+    let url = createApiLink('subcategoriesjson')
+    return fetch(url,fetchObject)
         .then(results=>results.json())
 }
-export {getSubCategories}
+async function getSubcategoriesByCateogryId(categoryId) {
+    let url = createApiLinkById('subcategoriesByCategoryjson',categoryId)
+    return fetch(url,fetchObject)
+        .then(results=>results.json())
+
+}
+export {getSubCategories,getSubcategoriesByCateogryId}

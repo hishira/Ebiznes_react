@@ -1,0 +1,19 @@
+.root{
+    max-width: 345px;
+}
+.media{
+    height: 140px;
+}
+.categories{
+    margin-top: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    position: relative;
+}
+.root{
+    margin-top: 1rem;
+    flex: 0 1 calc(20% - 8px);
+}

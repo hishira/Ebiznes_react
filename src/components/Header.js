@@ -8,8 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import {useHistory} from "react-router";
-import {Link, NavLink} from "react-router-dom";
+import history from '../history'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -30,7 +29,7 @@ export default function ButtonAppBar() {
         setAnchorEl(event.currentTarget);
     };
     const  handleKategorie = (event) =>{
-
+        history.push('/categories')
     };
     const handleClose = () => {
         setAnchorEl(null);
@@ -50,7 +49,7 @@ export default function ButtonAppBar() {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <NavLink activeClassName="link" to='/categories'>Kategorie</NavLink>
+                        <MenuItem onClick={handleKategorie}>Kategorie</MenuItem>
                         <MenuItem onClick={handleClose}>Kontakt</MenuItem>
                     </Menu>
                     <Typography variant="h6" className={classes.title}>
