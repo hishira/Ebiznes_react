@@ -1,42 +1,48 @@
 import React from "react";
-import {getOrderById} from "../../Api/OrderApi";
+import {getProductById} from "../../Api/Products";
 
-class Order extends React.Component{
+class Product extends React.Component{
     constructor() {
         super();
         this.state = {
-            order: []
+            product: []
         }
     }
 
     async componentDidMount() {
         const {match: {params}} = this.props
-        getOrderById(params.id).then(dane => {
+        getProductById(params.id).then(dane => {
             console.log(dane)
             let com = [dane].map(d => {
                 return (
                     <div key={d.id}>
                         <div>
-                            {d.date}
+                            {d.name}
                         </div>
                         <div>
                             {d.cost}
+                        </div>
+                        <div>
+                            {d.count}
+                        </div>
+                        <div>
+                            {d.producer}
                         </div>
                     </div>
 
                 )
             })
-            this.setState({order: com})
+            this.setState({product: com})
 
-        }).catch(e => this.setState({order: []}))
+        }).catch(e => this.setState({product: []}))
     }
 
     render() {
         return (
             <div>
-                {this.state.order}
+                {this.state.product}
             </div>
         )
     }
 }
-export default Order
+export default Product;

@@ -10,4 +10,8 @@ async function getSubcategoriesByCateogryId(categoryId) {
         .then(results=>results.json())
 
 }
-export {getSubCategories,getSubcategoriesByCateogryId}
+async function getSubcategoryById(id){
+    let url = createApiLinkById("subcategoriesjson",id)
+    return await fetch(url,fetchObject).then(data=>data.json())
+}
+export {getSubCategories,getSubcategoriesByCateogryId,getSubcategoryById}

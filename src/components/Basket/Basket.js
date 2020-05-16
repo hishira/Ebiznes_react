@@ -1,42 +1,41 @@
 import React from "react";
-import {getOrderById} from "../../Api/OrderApi";
+import {getBasketById} from "../../Api/BasketApi";
 
-class Order extends React.Component{
+class Basket extends React.Component {
+
     constructor() {
         super();
         this.state = {
-            order: []
+            basket: []
         }
     }
 
     async componentDidMount() {
         const {match: {params}} = this.props
-        getOrderById(params.id).then(dane => {
+        getBasketById(params.id).then(dane => {
             console.log(dane)
             let com = [dane].map(d => {
                 return (
                     <div key={d.id}>
                         <div>
-                            {d.date}
-                        </div>
-                        <div>
-                            {d.cost}
+                            {d.description}
                         </div>
                     </div>
 
                 )
             })
-            this.setState({order: com})
+            this.setState({basket: com})
 
-        }).catch(e => this.setState({order: []}))
+        }).catch(e => this.setState({basket: []}))
     }
 
     render() {
         return (
             <div>
-                {this.state.order}
+                {this.state.basket}
             </div>
         )
     }
 }
-export default Order
+
+export default Basket

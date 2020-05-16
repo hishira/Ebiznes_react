@@ -1,42 +1,42 @@
 import React from "react";
-import {getOrderById} from "../../Api/OrderApi";
+import {getPaymentMethodById} from "../../Api/PaymentmethodApi";
 
-class Order extends React.Component{
+class PaymentMethod extends React.Component{
     constructor() {
         super();
         this.state = {
-            order: []
+            paymentmethod: []
         }
     }
 
     async componentDidMount() {
         const {match: {params}} = this.props
-        getOrderById(params.id).then(dane => {
+        getPaymentMethodById(params.id).then(dane => {
             console.log(dane)
             let com = [dane].map(d => {
                 return (
                     <div key={d.id}>
                         <div>
-                            {d.date}
+                            {d.name}
                         </div>
                         <div>
-                            {d.cost}
+                            {d.description}
                         </div>
                     </div>
 
                 )
             })
-            this.setState({order: com})
+            this.setState({paymentmethod: com})
 
-        }).catch(e => this.setState({order: []}))
+        }).catch(e => this.setState({paymentmethod: []}))
     }
 
     render() {
         return (
             <div>
-                {this.state.order}
+                {this.state.paymentmethod}
             </div>
         )
     }
 }
-export default Order
+export default PaymentMethod

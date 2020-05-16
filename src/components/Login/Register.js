@@ -7,10 +7,11 @@ import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {checkUserLogin,createUser} from "../../Api/UserApi";
+import {checkUserLogin, createUser} from "../../Api/UserApi";
 import history from "../../history";
+
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -49,47 +50,48 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
     const classes = useStyles();
-    const [login,setLogin] = useState("");
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("");
-    const [rePassword,setRepassword] = useState("")
+    const [login, setLogin] = useState("");
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("");
+    const [rePassword, setRepassword] = useState("")
+
     async function createHandle(event) {
         event.preventDefault()
-        console.log(login,email,password,rePassword)
-        if(rePassword !== password){
+        console.log(login, email, password, rePassword)
+        if (rePassword !== password) {
             alert("Hasla sie nie zgadzaja")
         }
         let count = -1
-        await checkUserLogin({login:login}).then(dane=>count = dane)
-        if(count >0){
+        await checkUserLogin({login: login}).then(dane => count = dane)
+        if (count > 0) {
             alert("Uzytkownik o podanym login istnieje")
-        }else if(count === 0) {
-            await createUser({login:login,email:email,password:password})
+        } else if (count === 0) {
+            await createUser({login: login, email: email, password: password})
             history.push('/')
         }
 
     }
+
     return (
         <Container component="main" maxWidth="xs">
-            <CssBaseline />
+            <CssBaseline/>
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <LockOutlinedIcon/>
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
-                <form className={classes.form}  onSubmit={createHandle} autoComplete="off">
+                <form className={classes.form} onSubmit={createHandle} autoComplete="off">
                     <TextField
                         variant="outlined"
                         margin="normal"
-                        required={true}
                         fullWidth
                         id="email"
                         label="Email Address"
                         name="email"
                         autoFocus
-                        onChange={(event)=>setEmail(event.target.value)}
+                        onChange={(event) => setEmail(event.target.value)}
                         required
                     />
                     <TextField
@@ -101,32 +103,30 @@ export default function SignUp() {
                         name="login"
                         autoComplete="username"
                         autoFocus
-                        onChange={(event)=> setLogin(event.target.value)}
+                        onChange={(event) => setLogin(event.target.value)}
                         required
                     />
                     <TextField
                         variant="outlined"
                         margin="normal"
-                        required
                         fullWidth
                         name="password"
                         label="Password"
                         type="password"
                         id="password"
+                        onChange={(event) => setPassword(event.target.value)}
                         required
-                        onChange={(event)=> setPassword(event.target.value)}
                     />
                     <TextField
                         variant="outlined"
                         margin="normal"
-                        required
                         fullWidth
                         name="re-password"
                         label="Re-Password"
                         type="password"
                         id="re-password"
                         required
-                        onChange={(event)=>setRepassword(event.target.value)}
+                        onChange={(event) => setRepassword(event.target.value)}
                     />
 
                     <Button
@@ -141,7 +141,7 @@ export default function SignUp() {
                 </form>
             </div>
             <Box mt={8}>
-                <Copyright />
+                <Copyright/>
             </Box>
         </Container>
     );

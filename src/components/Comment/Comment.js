@@ -1,42 +1,43 @@
 import React from "react";
-import {getOrderById} from "../../Api/OrderApi";
+import {getCommentById} from "../../Api/CommentApi";
 
-class Order extends React.Component{
+class Comment extends React.Component {
     constructor() {
         super();
         this.state = {
-            order: []
+            comment: []
         }
     }
 
     async componentDidMount() {
         const {match: {params}} = this.props
-        getOrderById(params.id).then(dane => {
+        getCommentById(params.id).then(dane => {
             console.log(dane)
             let com = [dane].map(d => {
                 return (
                     <div key={d.id}>
                         <div>
-                            {d.date}
+                            {d.title}
                         </div>
                         <div>
-                            {d.cost}
+                            {d.content}
                         </div>
                     </div>
 
                 )
             })
-            this.setState({order: com})
+            this.setState({comment: com})
 
-        }).catch(e => this.setState({order: []}))
+        }).catch(e => this.setState({comment: []}))
     }
 
     render() {
         return (
             <div>
-                {this.state.order}
+                {this.state.comment}
             </div>
         )
     }
 }
-export default Order
+
+export default Comment

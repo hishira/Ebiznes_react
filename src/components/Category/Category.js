@@ -1,42 +1,41 @@
 import React from "react";
-import {getOrderById} from "../../Api/OrderApi";
+import {getCategoriesById} from "../../Api/Categories";
 
-class Order extends React.Component{
+class Category extends React.Component {
     constructor() {
         super();
-        this.state = {
-            order: []
-        }
+        this.state = {category: []}
     }
 
     async componentDidMount() {
         const {match: {params}} = this.props
-        getOrderById(params.id).then(dane => {
+        getCategoriesById(params.id).then(dane => {
             console.log(dane)
-            let com = [dane].map(d => {
+            let da = [dane].map(d => {
                 return (
                     <div key={d.id}>
                         <div>
-                            {d.date}
+                            {d.name}
                         </div>
                         <div>
-                            {d.cost}
+                            {d.description}
                         </div>
                     </div>
 
                 )
             })
-            this.setState({order: com})
+            this.setState({category: da})
 
-        }).catch(e => this.setState({order: []}))
+        }).catch(e=> this.setState({category: []}))
     }
 
     render() {
         return (
             <div>
-                {this.state.order}
+                {this.state.category}
             </div>
         )
     }
 }
-export default Order
+
+export default Category

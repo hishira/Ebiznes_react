@@ -1,42 +1,41 @@
 import React from "react";
-import {getOrderById} from "../../Api/OrderApi";
+import {getImagesById} from "../../Api/ImagesApi";
 
-class Order extends React.Component{
+class Image extends React.Component{
     constructor() {
         super();
         this.state = {
-            order: []
+            iamge: []
         }
     }
-
     async componentDidMount() {
         const {match: {params}} = this.props
-        getOrderById(params.id).then(dane => {
+        getImagesById(params.id).then(dane => {
             console.log(dane)
             let com = [dane].map(d => {
                 return (
                     <div key={d.id}>
                         <div>
-                            {d.date}
+                            {d.url}
                         </div>
                         <div>
-                            {d.cost}
+                            {d.description}
                         </div>
                     </div>
 
                 )
             })
-            this.setState({order: com})
+            this.setState({iamge: com})
 
-        }).catch(e => this.setState({order: []}))
+        }).catch(e => this.setState({iamge: []}))
     }
 
     render() {
         return (
             <div>
-                {this.state.order}
+                {this.state.iamge}
             </div>
         )
     }
 }
-export default Order
+export default Image

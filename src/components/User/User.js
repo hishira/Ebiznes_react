@@ -1,42 +1,42 @@
 import React from "react";
-import {getOrderById} from "../../Api/OrderApi";
+import {getUserById} from "../../Api/UserApi";
 
-class Order extends React.Component{
+class User extends React.Component{
     constructor() {
         super();
         this.state = {
-            order: []
+            user: []
         }
     }
 
     async componentDidMount() {
         const {match: {params}} = this.props
-        getOrderById(params.id).then(dane => {
+        getUserById(params.id).then(dane => {
             console.log(dane)
             let com = [dane].map(d => {
                 return (
                     <div key={d.id}>
                         <div>
-                            {d.date}
+                            {d.login}
                         </div>
                         <div>
-                            {d.cost}
+                            {d.email}
                         </div>
                     </div>
 
                 )
             })
-            this.setState({order: com})
+            this.setState({user: com})
 
-        }).catch(e => this.setState({order: []}))
+        }).catch(e => this.setState({user: []}))
     }
 
     render() {
         return (
             <div>
-                {this.state.order}
+                {this.state.user}
             </div>
         )
     }
 }
-export default Order
+export default User

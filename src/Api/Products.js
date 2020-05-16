@@ -10,5 +10,9 @@ async function getProductsBySubCategoryId(id){
     return await fetch(url,fetchObject)
         .then(dane => dane.json())
 }
+async function getProductById(id) {
+    let url = createApiLinkById("productsjson",id)
+    return await fetch(url,fetchObject).then(dane=>dane.json())
+}
 
-export {getProducts,getProductsBySubCategoryId}
+export {getProducts,getProductsBySubCategoryId,getProductById}
