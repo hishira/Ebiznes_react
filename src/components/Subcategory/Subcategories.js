@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {getSubCategories} from "../Api/Subcategory";
+import {getSubCategories} from "../../Api/Subcategory";
 class Subcategories extends Component{
     constructor() {
         super();

@@ -1,4 +1,4 @@
-import {createFetchObject,createApiLink} from "./ApiConfig";
+import {createFetchObject, createApiLink, fetchObject} from "./ApiConfig";
 
 async function authUser(obj) {
     var url = createApiLink("authuser")
@@ -12,5 +12,9 @@ async function createUser(user){
     var url = createApiLink('usercreatejson')
     return fetch(url,createFetchObject(user))
 }
+async function getUsers() {
+    var url = createApiLink("usersjson")
+    return await fetch(url,fetchObject).then(dane=>dane.json())
+}
 
-export {authUser,checkUserLogin,createUser}
+export {authUser,checkUserLogin,createUser,getUsers}

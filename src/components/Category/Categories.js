@@ -1,12 +1,12 @@
 import React,{Component} from "react";
-import {getCategoriesWithSub,getCategories} from '../Api/Categories'
+import {getCategoriesWithSub,getCategories} from '../../Api/Categories'
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import './Categories.css'
-import history from "../history";
-import ActiveLastBreadcrumb from "./Breadcumb";
+import history from "../../history";
+import ActiveLastBreadcrumb from "../Breadcumb";
 class Categories extends Component{
     constructor() {
         super();

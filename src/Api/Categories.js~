@@ -2,13 +2,13 @@ import {fetchObject, createApiLink} from "./ApiConfig";
 
 async function getCategories() {
         let url = createApiLink('categoriesjson')
-        return await fetch(url, fetchObject)
+        return fetch(url, fetchObject)
             .then(results => results.json())
     }
 
     async function getCategoriesWithSub() {
         let url = createApiLink("categorieswithsub")
-        return await fetch(url, fetchObject)
+        return fetch(url, fetchObject)
             .then(results => results.json())
 
     }

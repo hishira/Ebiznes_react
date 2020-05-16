@@ -1,4 +1,5 @@
 import React,{Component} from "react";
+import {getProducts} from "../../Api/Products";
 
 class Products extends Component{
     constructor() {
@@ -7,19 +8,8 @@ class Products extends Component{
             products: []
         }
     }
-    componentDidMount() {
-        let url = "http://localhost:9090/productsjson"
-        let fetchObject = {
-            mode: "cors",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin':'http://localhost:3000',
-            },
-            method: "GET"
-        }
-        fetch(url,fetchObject)
-            .then(data=>data.json())
+    async componentDidMount() {
+        await getProducts()
             .then(response=>{
                 let prod = response.map(p=>{
                     return(
