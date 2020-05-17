@@ -1,0 +1,12 @@
+.buttonStyle{
+    margin-top: 2rem!important;
+}
+.selectStyle{
+    outline: none!important;
+    margin-top: 1rem;
+    text-decoration: none;
+    border: 1px solid #ced4da;
+    borderRadius: 4;
+    fontSize: 16;
+    padding: 10px 26px 10px 12px,
+}

@@ -1,4 +1,4 @@
-import {fetchObject, createApiLink,createApiLinkById} from "./ApiConfig";
+import {fetchObject,createFetchObject, createApiLink,createApiLinkById} from "./ApiConfig";
 
 async function getProducts() {
     let url = createApiLink("productsjson")
@@ -14,5 +14,9 @@ async function getProductById(id) {
     let url = createApiLinkById("productsjson",id)
     return await fetch(url,fetchObject).then(dane=>dane.json())
 }
+async function createProduct(obj) {
+    let url = createApiLink('productcreatejson')
+    return await fetch(url,createFetchObject(obj))
 
-export {getProducts,getProductsBySubCategoryId,getProductById}
+}
+export {getProducts,getProductsBySubCategoryId,getProductById,createProduct}

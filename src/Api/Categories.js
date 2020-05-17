@@ -1,4 +1,4 @@
-import {fetchObject, createApiLink,createApiLinkById} from "./ApiConfig";
+import {fetchObject,createFetchObject, createApiLink,createApiLinkById} from "./ApiConfig";
 
 async function getCategories() {
     let url = createApiLink('categoriesjson')
@@ -16,6 +16,10 @@ async function getCategoriesById(id) {
     let url = createApiLinkById("categoriesjson",id)
     return await fetch(url,fetchObject).then(dane=>dane.json())
 }
+async function createCategory(obj) {
+    let url = createApiLink("createcategoryjson")
+    return fetch(url,createFetchObject(obj))
+}
 
 function operateOnData(data) {
     let obj = {}
@@ -32,4 +36,4 @@ function operateOnData(data) {
     return finalarray
 }
 
-export {getCategories, getCategoriesWithSub, operateOnData,getCategoriesById}
+export {getCategories, getCategoriesWithSub, operateOnData,getCategoriesById,createCategory}

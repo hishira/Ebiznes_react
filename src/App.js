@@ -28,27 +28,43 @@ import PaymentMethod from "./components/PaymentMethod/PaymentMethod";
 import Product from "./components/Product/Product";
 import Subcategoryid from "./components/Subcategory/Subcategoryid";
 import User from "./components/User/User";
+import CategoryForm from "./components/Category/CategoryForm";
+import CommentForm from "./components/Comment/CommentForm";
+import DeliverForm from "./components/Deliver/DeliverForm";
+import ImageForm from "./components/Image/ImageForm";
+import PaymentMethodForm from "./components/PaymentMethod/PaymentmethodForm";
+import ProductForm from "./components/Product/ProductForm";
+import SubcategoryForm from "./components/Subcategory/SubcategoryForm";
+import Subcategories from "./components/Subcategory/Subcategories";
 function App() {
     return (
         <div className="App">
             <Header/>
             <Route path='/categories' component={Categories}/>
             <Route path='/category/:id' component={Category}/>
+            <Route path='/createcategory' component={CategoryForm}/>
             <Route path="/cat/:id/subcategories" component={Subcategory}/>
             <Route path='/subcat/:id/products' component={ProductsBySubcategory}/>
+            <Route path='/subcategories' component={Subcategories} />
             <Route path='/subcategory/:id' component={Subcategoryid}/>
+            <Route path='/createsubcategory' component={SubcategoryForm}/>
             <Route path='/login' component={Login}/>
             <Route path='/register' component={Register}/>
             <Route path='/products' component={Products}/>
-            <Route path='/product/:id' component={Product} />
+            <Route path='/product/:id' component={Product}/>
+            <Route path='/createproduct' component={ProductForm}/>
             <Route path='/comments' component={Comments}/>
             <Route path='/comment/:id' component={Comment}/>
+            <Route path='/createcomment' component={CommentForm}/>
             <Route path='/paymentmethods' component={PaymentMethods}/>
-            <Route path='/paymentmethod/:id'  component={PaymentMethod}/>
+            <Route path='/paymentmethod/:id' component={PaymentMethod}/>
+            <Route path='/createpaymentmethod' component={PaymentMethodForm}/>
             <Route path='/images' component={Images}/>
             <Route path='/image/:id' component={Image}/>
+            <Route path='/createimage' component={ImageForm}/>
             <Route path='/delivers' component={Delivers}/>
             <Route path='/deliver/:id' component={Deliver}/>
+            <Route path='/createdeliver' component={DeliverForm}/>
             <Route path='/users' component={Users}/>
             <Route path='/user/:id' component={User}/>
             <Route path='/baskets' component={Baskets}/>

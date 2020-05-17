@@ -1,4 +1,4 @@
-import {createApiLink,createApiLinkById,fetchObject} from "./ApiConfig";
+import {createApiLink,createApiLinkById,fetchObject,createFetchObject} from "./ApiConfig";
 
 async function getPayemntMethods(){
     let url  = createApiLink("paymentmethodsjson")
@@ -8,5 +8,8 @@ async function getPaymentMethodById(id) {
     let url = createApiLinkById("paymentmethodsjson",id)
     return await fetch(url,fetchObject).then(dane=>dane.json())
 }
-
-export {getPayemntMethods,getPaymentMethodById}
+async function createPaymentMethod(obj){
+    let url = createApiLink('paymentmethodcreatejson')
+    return await fetch(url,createFetchObject(obj))
+}
+export {getPayemntMethods,getPaymentMethodById,createPaymentMethod}

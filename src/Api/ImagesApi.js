@@ -1,4 +1,4 @@
-import {createApiLink,createApiLinkById,fetchObject} from "./ApiConfig";
+import {createApiLink,createApiLinkById,fetchObject,createFetchObject} from "./ApiConfig";
 
 async function getImages() {
     let url = createApiLink("imagesjson")
@@ -8,4 +8,9 @@ async function getImagesById(id) {
     let url = createApiLinkById("imagesjson",id)
     return await fetch(url,fetchObject).then(dane=>dane.json())
 }
-export {getImages,getImagesById}
+async function createImage(obj) {
+    let url = createApiLink('imagecreatejson')
+    return await fetch(url,createFetchObject(obj))
+
+}
+export {getImages,getImagesById,createImage}

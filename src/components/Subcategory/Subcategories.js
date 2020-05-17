@@ -8,8 +8,7 @@ class Subcategories extends Component{
         }
     }
     async componentDidMount(){
-        let dane = await getSubCategories()
-        dane.then(data=>{
+       await getSubCategories().then(data=>{
                 let cc = data.map(cat=>{
                     return (
                         <div key={cat.id}>

@@ -1,12 +1,16 @@
-import {fetchObject,createApiLink,createApiLinkById} from "./ApiConfig";
+import {fetchObject,createFetchObject,createApiLink,createApiLinkById} from "./ApiConfig";
 
 async function getComments(){
-    var url = createApiLink("commentsjson")
+    let url = createApiLink("commentsjson")
     return await fetch(url,fetchObject).then(dane=>dane.json())
 }
 async function getCommentById(id) {
-    var url = createApiLinkById("commentsjson",id)
+    let url = createApiLinkById("commentsjson",id)
     return await fetch(url,fetchObject).then(dane=>dane.json())
 }
+async function createComment(obj){
+    let url = createApiLink('commentcreatejson')
+    return await fetch(url,createFetchObject(obj))
+}
 
-export {getComments,getCommentById}
+export {getComments,getCommentById,createComment}
