@@ -36,6 +36,11 @@ import PaymentMethodForm from "./components/PaymentMethod/PaymentmethodForm";
 import ProductForm from "./components/Product/ProductForm";
 import SubcategoryForm from "./components/Subcategory/SubcategoryForm";
 import Subcategories from "./components/Subcategory/Subcategories";
+import CategoryUpdateForm from "./components/Category/UpdateFormCategory";
+import CommentUpdateForm from "./components/Comment/UpdateFormComment";
+import DeliverUpdateForm from "./components/Deliver/UpdateFormDeliver";
+import ImageUpdateForm from "./components/Image/UpdateFormImage";
+import PaymentMethodUpdateForm from "./components/PaymentMethod/UpdateFormPaymentMethod";
 function App() {
     return (
         <div className="App">
@@ -43,6 +48,7 @@ function App() {
             <Route path='/categories' component={Categories}/>
             <Route path='/category/:id' component={Category}/>
             <Route path='/createcategory' component={CategoryForm}/>
+            <Route path='/categoryupdate/:id' component={CategoryUpdateForm}/>
             <Route path="/cat/:id/subcategories" component={Subcategory}/>
             <Route path='/subcat/:id/products' component={ProductsBySubcategory}/>
             <Route path='/subcategories' component={Subcategories} />
@@ -55,15 +61,19 @@ function App() {
             <Route path='/createproduct' component={ProductForm}/>
             <Route path='/comments' component={Comments}/>
             <Route path='/comment/:id' component={Comment}/>
+            <Route path='/commentupdate/:id' component={CommentUpdateForm}/>
             <Route path='/createcomment' component={CommentForm}/>
             <Route path='/paymentmethods' component={PaymentMethods}/>
             <Route path='/paymentmethod/:id' component={PaymentMethod}/>
             <Route path='/createpaymentmethod' component={PaymentMethodForm}/>
+            <Route path='/updatepaymentmethod/:id' component={PaymentMethodUpdateForm}/>
             <Route path='/images' component={Images}/>
             <Route path='/image/:id' component={Image}/>
+            <Route path='/updateimage/:id' component={ImageUpdateForm}/>
             <Route path='/createimage' component={ImageForm}/>
             <Route path='/delivers' component={Delivers}/>
             <Route path='/deliver/:id' component={Deliver}/>
+            <Route path='/updatedeliver/:id' component={DeliverUpdateForm}/>
             <Route path='/createdeliver' component={DeliverForm}/>
             <Route path='/users' component={Users}/>
             <Route path='/user/:id' component={User}/>

@@ -11,6 +11,9 @@ async function getImagesById(id) {
 async function createImage(obj) {
     let url = createApiLink('imagecreatejson')
     return await fetch(url,createFetchObject(obj))
-
 }
-export {getImages,getImagesById,createImage}
+async function updateImage(id,obj) {
+    let url = createApiLinkById("updateimagejson",id)
+    return await fetch(url,createFetchObject(obj))
+}
+export {getImages,getImagesById,createImage,updateImage}

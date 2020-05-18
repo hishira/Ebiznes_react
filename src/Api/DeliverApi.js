@@ -12,5 +12,8 @@ async function createDeliver(obj){
     let url = createApiLink('delivercreatejson')
     return await fetch(url,createFetchObject(obj))
 }
-
-export {getDelivers,getDeliveById,createDeliver}
+async function updateDeliver(id,obj){
+    let url = createApiLinkById("updatedeliverjson",id)
+    return await fetch(url,createFetchObject(obj))
+}
+export {getDelivers,getDeliveById,createDeliver,updateDeliver}

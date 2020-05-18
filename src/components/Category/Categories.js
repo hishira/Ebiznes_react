@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import './Categories.css'
 import history from "../../history";
 import ActiveLastBreadcrumb from "../Breadcumb";
+import Button from '@material-ui/core/Button';
 
 class Categories extends Component {
     constructor() {
@@ -15,13 +16,17 @@ class Categories extends Component {
             categories: []
         }
         this.handleClick = this.handleClick.bind(this)
-
+        this.handleUpdate = this.handleUpdate.bind(this)
     }
 
     handleClick(id) {
         history.entries = []
         history.index = 0
         history.push(`/cat/${id}/subcategories`)
+    }
+    handleUpdate(id){
+        console.log(id)
+        history.push(`categoryupdate/${id}`)
     }
 
     async componentDidMount() {
@@ -42,15 +47,20 @@ class Categories extends Component {
                 <div className="categories">
                     {this.state.categories.map(cat => {
                         return (
-                            <Card onClick={this.handleClick.bind(this, cat.id)} key={cat.id} className="root">
+                            <Card  key={cat.id} className="root">
                                 <CardActionArea>
                                     <CardContent key={cat.id}>
-                                        <Typography gutterBottom variant="h5" component="h2">
+                                        <Typography onClick={this.handleClick.bind(this, cat.id)} gutterBottom variant="h5" component="h2">
                                             {cat.name}
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
                                             {cat.description}
                                         </Typography>
+                                        <Button
+                                            onClick={this.handleUpdate.bind(this,cat.id)}
+                                        >
+                                            Update
+                                        </Button>
                                     </CardContent>
                                 </CardActionArea>
                             </Card>

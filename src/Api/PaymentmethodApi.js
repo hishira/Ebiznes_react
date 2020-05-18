@@ -12,4 +12,8 @@ async function createPaymentMethod(obj){
     let url = createApiLink('paymentmethodcreatejson')
     return await fetch(url,createFetchObject(obj))
 }
-export {getPayemntMethods,getPaymentMethodById,createPaymentMethod}
+async function updatePaymentMethod(id,obj){
+    let url = createApiLinkById("updatepaymentmethodjson",id)
+    return await fetch(url,createFetchObject(obj))
+}
+export {getPayemntMethods,getPaymentMethodById,createPaymentMethod,updatePaymentMethod}

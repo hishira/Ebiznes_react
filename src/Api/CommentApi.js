@@ -12,5 +12,9 @@ async function createComment(obj){
     let url = createApiLink('commentcreatejson')
     return await fetch(url,createFetchObject(obj))
 }
+async function updateComment(id,obj){
+    let url = createApiLinkById('updatecommentjson',id)
+    return await fetch(url,createFetchObject(obj))
+}
 
-export {getComments,getCommentById,createComment}
+export {getComments,getCommentById,createComment,updateComment}

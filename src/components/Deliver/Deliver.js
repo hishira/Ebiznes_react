@@ -1,7 +1,7 @@
 import React from "react";
 import {getDeliveById} from "../../Api/DeliverApi";
-
-
+import Button from "@material-ui/core/Button";
+import history from "../../history";
 class Deliver extends React.Component {
 
     constructor() {
@@ -9,6 +9,10 @@ class Deliver extends React.Component {
         this.state = {
             deliver: []
         }
+        this.updateDeliverHandle = this.updateDeliverHandle.bind(this)
+    }
+    updateDeliverHandle(id){
+        history.push(`/updatedeliver/${id}`)
     }
 
     async componentDidMount() {
@@ -27,6 +31,9 @@ class Deliver extends React.Component {
                         <div>
                             {d.description}
                         </div>
+                        <Button onClick={this.updateDeliverHandle.bind(this,d.id)}>
+                            Update deliver
+                        </Button>
                     </div>
 
                 )

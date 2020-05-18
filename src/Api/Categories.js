@@ -20,7 +20,10 @@ async function createCategory(obj) {
     let url = createApiLink("createcategoryjson")
     return fetch(url,createFetchObject(obj))
 }
-
+async function updateCategory(id,obj) {
+    let url = createApiLinkById('updatecategoryjson',id)
+    return await fetch(url,createFetchObject(obj))
+}
 function operateOnData(data) {
     let obj = {}
     let finalarray = []
@@ -36,4 +39,4 @@ function operateOnData(data) {
     return finalarray
 }
 
-export {getCategories, getCategoriesWithSub, operateOnData,getCategoriesById,createCategory}
+export {getCategories, getCategoriesWithSub, operateOnData,getCategoriesById,createCategory,updateCategory}
