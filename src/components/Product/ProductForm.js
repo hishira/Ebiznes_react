@@ -167,7 +167,7 @@ class ProductForm extends React.Component {
                         color="primary"
                         className='buttonStyle'
                     >
-                        Create iamge
+                        Create product
                     </Button>
                 </form>
             </Container>

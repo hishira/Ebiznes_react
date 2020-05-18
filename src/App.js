@@ -41,6 +41,10 @@ import CommentUpdateForm from "./components/Comment/UpdateFormComment";
 import DeliverUpdateForm from "./components/Deliver/UpdateFormDeliver";
 import ImageUpdateForm from "./components/Image/UpdateFormImage";
 import PaymentMethodUpdateForm from "./components/PaymentMethod/UpdateFormPaymentMethod";
+import ProductUpdateForm from "./components/Product/UpdateFormProduct";
+import SubcategoryUpdateForm from "./components/Subcategory/UpdateFormSubcategory";
+import UserUpdateForm from "./components/User/UpdateFormUser";
+
 function App() {
     return (
         <div className="App">
@@ -54,11 +58,13 @@ function App() {
             <Route path='/subcategories' component={Subcategories} />
             <Route path='/subcategory/:id' component={Subcategoryid}/>
             <Route path='/createsubcategory' component={SubcategoryForm}/>
+            <Route path='/updatesubcategory/:id' component={SubcategoryUpdateForm}/>
             <Route path='/login' component={Login}/>
             <Route path='/register' component={Register}/>
             <Route path='/products' component={Products}/>
             <Route path='/product/:id' component={Product}/>
             <Route path='/createproduct' component={ProductForm}/>
+            <Route path='/updateproduct/:id' component={ProductUpdateForm}/>
             <Route path='/comments' component={Comments}/>
             <Route path='/comment/:id' component={Comment}/>
             <Route path='/commentupdate/:id' component={CommentUpdateForm}/>
@@ -77,6 +83,7 @@ function App() {
             <Route path='/createdeliver' component={DeliverForm}/>
             <Route path='/users' component={Users}/>
             <Route path='/user/:id' component={User}/>
+            <Route path='/userupdate/:id' component={UserUpdateForm}/>
             <Route path='/baskets' component={Baskets}/>
             <Route path='/basket/:id' component={Basket}/>
             <Route path='/orders' component={Orders}/>

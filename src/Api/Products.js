@@ -17,6 +17,9 @@ async function getProductById(id) {
 async function createProduct(obj) {
     let url = createApiLink('productcreatejson')
     return await fetch(url,createFetchObject(obj))
-
 }
-export {getProducts,getProductsBySubCategoryId,getProductById,createProduct}
+async function updateProduct(id,obj){
+    let url = createApiLinkById("updateproductjson",id)
+    return await fetch(url,createFetchObject(obj))
+}
+export {getProducts,getProductsBySubCategoryId,getProductById,createProduct,updateProduct}

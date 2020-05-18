@@ -18,4 +18,8 @@ async function createSubcategory(obj){
     let url = createApiLink("subcategorycreatejson")
     return await fetch(url,createFetchObject(obj))
 }
-export {getSubCategories,getSubcategoriesByCateogryId,getSubcategoryById,createSubcategory}
+async function updateSubcategory(id,obj) {
+    let url = createApiLinkById("updatesubcategoryjson",id)
+    return await fetch(url,createFetchObject(obj))
+}
+export {getSubCategories,getSubcategoriesByCateogryId,getSubcategoryById,createSubcategory,updateSubcategory}

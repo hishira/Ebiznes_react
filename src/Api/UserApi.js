@@ -20,5 +20,9 @@ async function getUserById(id) {
     let url = createApiLinkById("usersjson",id)
     return await fetch(url,fetchObject).then(dane=>dane.json())
 }
+async function updateUser(id,obj) {
+    let url = createApiLinkById("updateuserjson",id)
+    return await fetch(url,createFetchObject(obj))
+}
 
-export {authUser,checkUserLogin,createUser,getUsers,getUserById}
+export {authUser,checkUserLogin,createUser,getUsers,getUserById,updateUser}

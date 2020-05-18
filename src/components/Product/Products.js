@@ -1,12 +1,17 @@
 import React,{Component} from "react";
 import {getProducts} from "../../Api/Products";
-
+import Button from "@material-ui/core/Button";
+import history from "../../history";
 class Products extends Component{
     constructor() {
         super();
         this.state = {
             products: []
         }
+        this.updateClickHandle = this.updateClickHandle.bind(this)
+    }
+    updateClickHandle(id){
+        history.push(`/updateproduct/${id}`)
     }
     async componentDidMount() {
         await getProducts()
@@ -17,6 +22,10 @@ class Products extends Component{
                             <div>
                                 {p.name}
                             </div>
+                            <div>{p.cost}</div>
+                            <div>{p.count}</div>
+                            <div>{p.producer}</div>
+                            <Button onClick={this.updateClickHandle.bind(this,p.id)}>Update</Button>
                         </div>
                     )
                 })

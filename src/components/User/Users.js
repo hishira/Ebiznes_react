@@ -1,10 +1,15 @@
 import React from "react";
 import {getUsers} from "../../Api/UserApi";
-
+import Button from "@material-ui/core/Button";
+import history from "../../history";
 class Users extends React.Component{
     constructor() {
         super();
         this.state = {users: []}
+        this.updateUserhandle = this.updateUserhandle.bind(this)
+    }
+    updateUserhandle(id){
+        history.push(`/userupdate/${id}`)
     }
     componentDidMount() {
         getUsers().then(dane=>{
@@ -17,6 +22,7 @@ class Users extends React.Component{
                     <div>
                         Email : {u.email}
                     </div>
+                    <Button onClick={this.updateUserhandle.bind(this,u.id)}>Update</Button>
                 </div>
                 )
             })
