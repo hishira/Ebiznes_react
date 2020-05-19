@@ -1,4 +1,4 @@
-import {fetchObject,createFetchObject,createApiLink,createApiLinkById} from "./ApiConfig";
+import {fetchObject,createFetchObject,createApiLink,createApiLinkById,fetchObjectDelete} from "./ApiConfig";
 
 async function getComments(){
     let url = createApiLink("commentsjson")
@@ -16,5 +16,9 @@ async function updateComment(id,obj){
     let url = createApiLinkById('updatecommentjson',id)
     return await fetch(url,createFetchObject(obj))
 }
+async function deleteComment(id) {
+    let url = createApiLinkById("deletecommentjson",id)
+    return await fetch(url,fetchObjectDelete)
+}
 
-export {getComments,getCommentById,createComment,updateComment}
+export {getComments,getCommentById,createComment,updateComment,deleteComment}

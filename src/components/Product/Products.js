@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {getProducts} from "../../Api/Products";
+import {getProducts,deleteProduct} from "../../Api/Products";
 import Button from "@material-ui/core/Button";
 import history from "../../history";
 class Products extends Component{
@@ -9,6 +9,11 @@ class Products extends Component{
             products: []
         }
         this.updateClickHandle = this.updateClickHandle.bind(this)
+        this.deleteHandle = this.deleteHandle.bind(this)
+    }
+    async deleteHandle(id){
+        await deleteProduct(id)
+        history.go(0)
     }
     updateClickHandle(id){
         history.push(`/updateproduct/${id}`)
@@ -26,6 +31,7 @@ class Products extends Component{
                             <div>{p.count}</div>
                             <div>{p.producer}</div>
                             <Button onClick={this.updateClickHandle.bind(this,p.id)}>Update</Button>
+                            <Button onClick={this.deleteHandle.bind(this,p.id)}>Delete</Button>
                         </div>
                     )
                 })

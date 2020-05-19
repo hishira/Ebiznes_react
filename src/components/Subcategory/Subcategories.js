@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {getSubCategories} from "../../Api/Subcategory";
+import {getSubCategories,deleteSubcategory} from "../../Api/Subcategory";
 import Button from "@material-ui/core/Button";
 import history from "../../history";
 
@@ -10,6 +10,11 @@ class Subcategories extends Component{
             subcategories : []
         }
         this.updateSubcategoryHandle = this.updateSubcategoryHandle.bind(this)
+        this.deleteHandle = this.deleteHandle.bind(this)
+    }
+    async deleteHandle(id){
+        await deleteSubcategory(id)
+        history.go(0)
     }
     updateSubcategoryHandle(id){
         history.push(`/updatesubcategory/${id}`)
@@ -22,6 +27,7 @@ class Subcategories extends Component{
                             <div className="name"><h1>{cat.name}</h1></div>
                             <div className="description"><h2>{cat.description}</h2></div>
                             <Button onClick={this.updateSubcategoryHandle.bind(this,cat.id)}>Update</Button>
+                            <Button onClick={this.deleteHandle.bind(this,cat.id)}>Delete</Button>
                         </div>
                     )
                 })

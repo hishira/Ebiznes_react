@@ -1,4 +1,4 @@
-import {fetchObject,createFetchObject, createApiLink,createApiLinkById} from "./ApiConfig";
+import {fetchObject,createFetchObject, createApiLink,createApiLinkById,fetchObjectDelete} from "./ApiConfig";
 async function getSubCategories(){
     let url = createApiLink('subcategoriesjson')
     return await fetch(url,fetchObject)
@@ -22,4 +22,9 @@ async function updateSubcategory(id,obj) {
     let url = createApiLinkById("updatesubcategoryjson",id)
     return await fetch(url,createFetchObject(obj))
 }
-export {getSubCategories,getSubcategoriesByCateogryId,getSubcategoryById,createSubcategory,updateSubcategory}
+async function deleteSubcategory(id) {
+    let url = createApiLinkById("deletesubcategoryjson",id)
+    return await fetch(url,fetchObjectDelete)
+
+}
+export {getSubCategories,getSubcategoriesByCateogryId,getSubcategoryById,createSubcategory,updateSubcategory,deleteSubcategory}

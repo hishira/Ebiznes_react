@@ -1,5 +1,5 @@
 import React from "react";
-import {getDelivers} from "../../Api/DeliverApi";
+import {getDelivers,deleteDeliver} from "../../Api/DeliverApi";
 import './Delivers.css'
 import Button from "@material-ui/core/Button";
 import history from "../../history";
@@ -9,6 +9,11 @@ class Delivers extends React.Component{
         super();
         this.state = {delivers:[]}
         this.updateDeliverHandle = this.updateDeliverHandle.bind(this)
+        this.deleteHandle = this.deleteHandle.bind(this)
+    }
+    async deleteHandle(id){
+        await deleteDeliver(id)
+        history.go(0)
     }
     updateDeliverHandle(id){
         history.push(`/updatedeliver/${id}`)
@@ -29,6 +34,9 @@ class Delivers extends React.Component{
                         </div>
                         <Button onClick={this.updateDeliverHandle.bind(this,p.id)}>
                             Update deliver
+                        </Button>
+                        <Button onClick={this.deleteHandle.bind(this,p.id)}>
+                            Delete
                         </Button>
                     </div>
                 )

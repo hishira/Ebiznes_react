@@ -1,4 +1,4 @@
-import {createApiLink,createApiLinkById,fetchObject,createFetchObject} from "./ApiConfig";
+import {createApiLink,createApiLinkById,fetchObject,createFetchObject,fetchObjectDelete} from "./ApiConfig";
 
 async function getPayemntMethods(){
     let url  = createApiLink("paymentmethodsjson")
@@ -16,4 +16,8 @@ async function updatePaymentMethod(id,obj){
     let url = createApiLinkById("updatepaymentmethodjson",id)
     return await fetch(url,createFetchObject(obj))
 }
-export {getPayemntMethods,getPaymentMethodById,createPaymentMethod,updatePaymentMethod}
+async function deletePaymentMethod(id){
+    let url = createApiLinkById("deletepaymentmethodjson",id)
+    return await fetch(url,fetchObjectDelete)
+}
+export {getPayemntMethods,getPaymentMethodById,createPaymentMethod,updatePaymentMethod,deletePaymentMethod}

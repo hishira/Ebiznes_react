@@ -9,6 +9,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import history from '../history'
+import {useAuth} from "../context/auth";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -24,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
-
+    const {authTokens,setAuthTokens} = useAuth()
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -37,6 +39,9 @@ export default function ButtonAppBar() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+    const handleLogout = () =>{
+        setAuthTokens()
+    }
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -58,7 +63,8 @@ export default function ButtonAppBar() {
                     <Typography variant="h6" className={classes.title}>
                         E-Sklep
                     </Typography>
-                    <Button color="inherit" onClick={handleLogin}>Login</Button>
+                    {authTokens?
+                        (<Button color="inherit" onClick={handleLogout}>Log out</Button>):(<Button color="inherit" onClick={handleLogin}>Login</Button>)}
                 </Toolbar>
             </AppBar>
         </div>

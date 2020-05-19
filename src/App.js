@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {
     Route,
 
@@ -18,24 +18,36 @@ import DeliverComponent from "./components/Deliver/DeliverComponent";
 import UserComponent from "./components/User/UserComponent";
 import BasketComponent from "./components/Basket/BasketComponent";
 import OrderComponent from "./components/Order/OrderComponent";
+import {AuthContext} from "./context/auth";
+import PrivateRoute from "./components/PrivateRoute";
+import User from "./components/User/User";
+function App(props) {
+    const existingTokens = JSON.parse(localStorage.getItem("tokens"));
+    const [authTokens, setAuthTokens] = useState(existingTokens);
 
-function App() {
+    const setTokens = (data = false) => {
+        localStorage.setItem("tokens", JSON.stringify(data));
+        setAuthTokens(data);
+    }
     return (
-        <div className="App">
-            <Header/>
-            <CategoryComponent/>
-            <SubcategoryComponent/>
-            <Route path='/login' component={Login}/>
-            <Route path='/register' component={Register}/>
-            <ProductComponent/>
-            <CommentComponent/>
-            <PaymentMethodComponent/>
-            <ImageComponent/>
-            <DeliverComponent/>
-            <UserComponent/>
-            <BasketComponent/>
-            <OrderComponent/>
-        </div>
+        <AuthContext.Provider value={{authTokens,setAuthTokens:setTokens}}>
+            <div className="App">
+                <Header/>
+                <CategoryComponent/>
+                <SubcategoryComponent/>
+                <Route path='/login' component={Login}/>
+                <Route path='/register' component={Register}/>
+                <ProductComponent/>
+                <CommentComponent/>
+                <PaymentMethodComponent/>
+                <ImageComponent/>
+                <DeliverComponent/>
+                <UserComponent/>
+                <BasketComponent/>
+                <OrderComponent/>
+                <PrivateRoute path='/user' component={User}/>
+            </div>
+        </AuthContext.Provider>
     )
 }
 

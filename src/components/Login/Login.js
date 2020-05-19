@@ -11,6 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import history from "../../history";
 import {authUser} from "../../Api/UserApi";
+import {useAuth} from "../../context/auth";
+import {Redirect} from "react-router-dom";
+
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -53,6 +56,8 @@ export default function SignIn() {
     const classes = useStyles();
     const [login,setLogin] = useState("");
     const [password,setPassword] = useState("");
+    const {setAuthTokens} = useAuth()
+    const [isLoggedIn,setLoggedIn] = useState(false)
     async function hundleSubmit(event) {
         event.preventDefault();
         const data = {login:login,password:password}
@@ -63,11 +68,15 @@ export default function SignIn() {
             console.log("nie ma uzytkownika")
         }
         else if(Object.keys(user).length === 0){
+            alert("Nie ma takiego uzythownika")
+        }
+        else {
+            console.log("yes")
+            setAuthTokens(user)
+            setLoggedIn(true)
+            history.push('/user')
+        }
 
-        }
-        else{
-            history.push("/")
-        }
 
     }
     return (

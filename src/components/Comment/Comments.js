@@ -1,5 +1,5 @@
 import React from "react";
-import {getComments} from "../../Api/CommentApi";
+import {getComments,deleteComment} from "../../Api/CommentApi";
 import Button from "@material-ui/core/Button";
 import history from "../../history";
 
@@ -10,6 +10,11 @@ class Comments extends React.Component {
             comments: []
         }
         this.updateHandle = this.updateHandle.bind(this)
+        this.deleteHandle = this.deleteHandle.bind(this)
+    }
+    async deleteHandle(id){
+        await deleteComment(id)
+        history.go(0)
     }
 
     updateHandle(id) {
@@ -31,6 +36,9 @@ class Comments extends React.Component {
                             </div>
                             <Button onClick={this.updateHandle.bind(this, p.id)}>
                                 Update comment
+                            </Button>
+                            <Button onClick={this.deleteHandle.bind(this,p.id)}>
+                                Delete
                             </Button>
                         </div>
                     )

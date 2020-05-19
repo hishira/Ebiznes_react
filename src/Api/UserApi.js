@@ -1,4 +1,4 @@
-import {createFetchObject, createApiLink,createApiLinkById, fetchObject} from "./ApiConfig";
+import {createFetchObject, createApiLink,createApiLinkById, fetchObject,fetchObjectDelete} from "./ApiConfig";
 
 async function authUser(obj) {
     let url = createApiLink("authuser")
@@ -24,5 +24,9 @@ async function updateUser(id,obj) {
     let url = createApiLinkById("updateuserjson",id)
     return await fetch(url,createFetchObject(obj))
 }
+async function deleteUser(id) {
+    let url = createApiLinkById("deleteuserjson",id)
+    return await fetch(url,fetchObjectDelete)
+}
 
-export {authUser,checkUserLogin,createUser,getUsers,getUserById,updateUser}
+export {authUser,checkUserLogin,createUser,getUsers,getUserById,updateUser,deleteUser}

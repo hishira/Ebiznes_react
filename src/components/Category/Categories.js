@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {getCategories} from '../../Api/Categories'
+import {getCategories,deleteCategory} from '../../Api/Categories'
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -17,6 +17,7 @@ class Categories extends Component {
         }
         this.handleClick = this.handleClick.bind(this)
         this.handleUpdate = this.handleUpdate.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     handleClick(id) {
@@ -27,6 +28,10 @@ class Categories extends Component {
     handleUpdate(id){
         console.log(id)
         history.push(`categoryupdate/${id}`)
+    }
+    async handleDelete(id) {
+        await deleteCategory(id)
+        history.go(0)
     }
 
     async componentDidMount() {
@@ -60,6 +65,9 @@ class Categories extends Component {
                                             onClick={this.handleUpdate.bind(this,cat.id)}
                                         >
                                             Update
+                                        </Button>
+                                        <Button onClick={this.handleDelete.bind(this,cat.id)}>
+                                            Delete
                                         </Button>
                                     </CardContent>
                                 </CardActionArea>

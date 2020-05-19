@@ -1,4 +1,4 @@
-import {fetchObject,createFetchObject, createApiLink,createApiLinkById} from "./ApiConfig";
+import {fetchObject,createFetchObject, createApiLink,createApiLinkById,fetchObjectDelete} from "./ApiConfig";
 
 async function getProducts() {
     let url = createApiLink("productsjson")
@@ -22,4 +22,8 @@ async function updateProduct(id,obj){
     let url = createApiLinkById("updateproductjson",id)
     return await fetch(url,createFetchObject(obj))
 }
-export {getProducts,getProductsBySubCategoryId,getProductById,createProduct,updateProduct}
+async function deleteProduct(id) {
+    let url = createApiLinkById("deleteproductjson",id)
+    return await fetch(url,fetchObjectDelete)
+}
+export {getProducts,getProductsBySubCategoryId,getProductById,createProduct,updateProduct,deleteProduct}

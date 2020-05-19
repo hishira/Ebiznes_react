@@ -1,4 +1,4 @@
-import {createApiLink,fetchObject,createFetchObject,createApiLinkById} from "./ApiConfig";
+import {createApiLink,fetchObject,createFetchObject,createApiLinkById,fetchObjectDelete} from "./ApiConfig";
 
 async function getDelivers() {
     let url = createApiLink("deliverjson")
@@ -16,4 +16,8 @@ async function updateDeliver(id,obj){
     let url = createApiLinkById("updatedeliverjson",id)
     return await fetch(url,createFetchObject(obj))
 }
-export {getDelivers,getDeliveById,createDeliver,updateDeliver}
+async function deleteDeliver(id) {
+    let url = createApiLinkById("deletecdeliverjson",id)
+    return await fetch(url,fetchObjectDelete)
+}
+export {getDelivers,getDeliveById,createDeliver,updateDeliver,deleteDeliver}

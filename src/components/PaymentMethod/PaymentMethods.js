@@ -1,5 +1,5 @@
 import React from "react";
-import {getPayemntMethods} from "../../Api/PaymentmethodApi";
+import {getPayemntMethods,deletePaymentMethod} from "../../Api/PaymentmethodApi";
 import Button from "@material-ui/core/Button";
 import history from "../../history";
 
@@ -10,6 +10,11 @@ class PaymentMethods extends React.Component {
             methods: []
         }
         this.updatePaymentMethod = this.updatePaymentMethod.bind(this)
+        this.deleteHandle = this.deleteHandle.bind(this)
+    }
+    async deleteHandle(id){
+        await deletePaymentMethod(id)
+        history.go(0)
     }
 
     updatePaymentMethod(id) {
@@ -24,6 +29,7 @@ class PaymentMethods extends React.Component {
                         <div>{c.name}</div>
                         <div>{c.description}</div>
                         <Button onClick={this.updatePaymentMethod.bind(this,c.id)}>Update</Button>
+                        <Button onClick={this.deleteHandle.bind(this,c.id)}>Delete</Button>
                     </div>
                 )
             })

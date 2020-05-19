@@ -1,4 +1,4 @@
-import {createApiLink,createApiLinkById,fetchObject,createFetchObject} from "./ApiConfig";
+import {createApiLink,createApiLinkById,fetchObject,createFetchObject,fetchObjectDelete} from "./ApiConfig";
 
 async function getImages() {
     let url = createApiLink("imagesjson")
@@ -16,4 +16,8 @@ async function updateImage(id,obj) {
     let url = createApiLinkById("updateimagejson",id)
     return await fetch(url,createFetchObject(obj))
 }
-export {getImages,getImagesById,createImage,updateImage}
+async function deleteImage(id){
+    let url = createApiLinkById("deleteimagejson",id)
+    return await fetch(url,fetchObjectDelete)
+}
+export {getImages,getImagesById,createImage,updateImage,deleteImage}

@@ -1,5 +1,5 @@
 import React from "react";
-import {getUsers} from "../../Api/UserApi";
+import {getUsers,deleteUser} from "../../Api/UserApi";
 import Button from "@material-ui/core/Button";
 import history from "../../history";
 class Users extends React.Component{
@@ -7,6 +7,11 @@ class Users extends React.Component{
         super();
         this.state = {users: []}
         this.updateUserhandle = this.updateUserhandle.bind(this)
+        this.deleteHandle = this.deleteHandle.bind(this)
+    }
+    async deleteHandle(id){
+        await deleteUser(id)
+        history.go(0)
     }
     updateUserhandle(id){
         history.push(`/userupdate/${id}`)
@@ -23,6 +28,7 @@ class Users extends React.Component{
                         Email : {u.email}
                     </div>
                     <Button onClick={this.updateUserhandle.bind(this,u.id)}>Update</Button>
+                    <Button onClick={this.deleteHandle.bind(this,u.id)}>Delete</Button>
                 </div>
                 )
             })

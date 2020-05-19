@@ -1,4 +1,4 @@
-import {fetchObject,createFetchObject, createApiLink,createApiLinkById} from "./ApiConfig";
+import {fetchObject,createFetchObject, createApiLink,createApiLinkById,fetchObjectDelete} from "./ApiConfig";
 
 async function getCategories() {
     let url = createApiLink('categoriesjson')
@@ -24,6 +24,10 @@ async function updateCategory(id,obj) {
     let url = createApiLinkById('updatecategoryjson',id)
     return await fetch(url,createFetchObject(obj))
 }
+async function deleteCategory(id){
+    let url = createApiLinkById("deletecategoryjson",id)
+    return await fetch(url,fetchObjectDelete)
+}
 function operateOnData(data) {
     let obj = {}
     let finalarray = []
@@ -39,4 +43,4 @@ function operateOnData(data) {
     return finalarray
 }
 
-export {getCategories, getCategoriesWithSub, operateOnData,getCategoriesById,createCategory,updateCategory}
+export {getCategories, getCategoriesWithSub, operateOnData,getCategoriesById,createCategory,updateCategory,deleteCategory}

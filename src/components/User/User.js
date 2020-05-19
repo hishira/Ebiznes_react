@@ -1,42 +1,38 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {getUserById} from "../../Api/UserApi";
+import {useAuth} from "../../context/auth";
+import Button from "@material-ui/core/Button";
+import history from "../../history";
 
-class User extends React.Component{
-    constructor() {
-        super();
-        this.state = {
-            user: []
-        }
-    }
-
-    async componentDidMount() {
-        const {match: {params}} = this.props
-        getUserById(params.id).then(dane => {
-            console.log(dane)
-            let com = [dane].map(d => {
-                return (
-                    <div key={d.id}>
-                        <div>
-                            {d.login}
-                        </div>
-                        <div>
-                            {d.email}
-                        </div>
-                    </div>
-
-                )
-            })
-            this.setState({user: com})
-
-        }).catch(e => this.setState({user: []}))
-    }
-
-    render() {
-        return (
-            <div>
-                {this.state.user}
-            </div>
-        )
-    }
+async function getuserApi(id) {
+    return await getUserById(id)
 }
+
+function User() {
+    const [user, setUser] = useState({})
+    const {authTokens,setAuthTokens } = useAuth()
+
+    useEffect(() => {
+            const fetchData = async () => {
+                const res = await getUserById(authTokens.id)
+                setUser(res)
+            }
+            fetchData()
+        }
+    )
+    function logoutButton(){
+        setAuthTokens()
+        history.push('/')
+    }
+
+
+    return (
+        <div>
+            <div>Witaj {user.login}</div>
+            <Button onClick={logoutButton}>Log out</Button>
+        </div>
+    )
+
+}
+
 export default User
