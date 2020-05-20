@@ -1,10 +1,11 @@
 import React,{Component} from "react";
 import {getProducts,deleteProduct} from "../../Api/Products";
+import {inject,observer} from "mobx-react";
 import Button from "@material-ui/core/Button";
 import history from "../../history";
 class Products extends Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             products: []
         }
@@ -32,6 +33,9 @@ class Products extends Component{
                             <div>{p.producer}</div>
                             <Button onClick={this.updateClickHandle.bind(this,p.id)}>Update</Button>
                             <Button onClick={this.deleteHandle.bind(this,p.id)}>Delete</Button>
+                            {this.props.basketStore.userIdentity?
+                                (<Button onClick={()=>this.props.basketStore.addProductToBasket(p)}>Add do cart</Button>):(<div></div>)
+                            }
                         </div>
                     )
                 })
@@ -49,4 +53,4 @@ class Products extends Component{
         )
     }
 }
-export default Products
+export default inject('basketStore')(observer(Products))

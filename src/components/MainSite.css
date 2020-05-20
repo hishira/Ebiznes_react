@@ -1,0 +1,9 @@
+.flexCards{
+    margin-top: 4rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.Card{
+    flex: 0 0 calc(30% - 2rem);
+}

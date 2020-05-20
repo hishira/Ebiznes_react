@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import {
     Route,
 
@@ -21,18 +21,26 @@ import OrderComponent from "./components/Order/OrderComponent";
 import {AuthContext} from "./context/auth";
 import PrivateRoute from "./components/PrivateRoute";
 import User from "./components/User/User";
+import MainSite from "./components/MainSite";
+import BasketStore from "./stores/BasketStore";
+import {inject, observer} from 'mobx-react'
+import {Provider} from "mobx-react";
+
 function App(props) {
     const existingTokens = JSON.parse(localStorage.getItem("tokens"));
     const [authTokens, setAuthTokens] = useState(existingTokens);
-
     const setTokens = (data = false) => {
         localStorage.setItem("tokens", JSON.stringify(data));
         setAuthTokens(data);
     }
+    const basketStore = new BasketStore()
+
     return (
-        <AuthContext.Provider value={{authTokens,setAuthTokens:setTokens}}>
+        //<AuthContext.Provider value={{authTokens, setAuthTokens: setTokens}}>
+        <Provider basketStore={basketStore}>
             <div className="App">
                 <Header/>
+                <Route exact path='/' component={MainSite}/>
                 <CategoryComponent/>
                 <SubcategoryComponent/>
                 <Route path='/login' component={Login}/>
@@ -47,7 +55,8 @@ function App(props) {
                 <OrderComponent/>
                 <PrivateRoute path='/user' component={User}/>
             </div>
-        </AuthContext.Provider>
+        </Provider>
+        //</AuthContext.Provider>
     )
 }
 

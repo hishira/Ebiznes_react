@@ -10,6 +10,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import history from '../history'
 import {useAuth} from "../context/auth";
+import CartBadge from "./CartBadge";
+import {inject,observer} from "mobx-react";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ButtonAppBar() {
+function ButtonAppBar(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const {authTokens,setAuthTokens} = useAuth()
+    //const {authTokens,setAuthTokens} = useAuth()
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -40,7 +42,8 @@ export default function ButtonAppBar() {
         setAnchorEl(null);
     };
     const handleLogout = () =>{
-        setAuthTokens()
+        props.basketStore.setUser(null)
+        history.push('/')
     }
     return (
         <div className={classes.root}>
@@ -63,10 +66,12 @@ export default function ButtonAppBar() {
                     <Typography variant="h6" className={classes.title}>
                         E-Sklep
                     </Typography>
-                    {authTokens?
+                    {props.basketStore.userIdentity?(<CartBadge/>):(<div></div>)}
+                    {props.basketStore.userIdentity?
                         (<Button color="inherit" onClick={handleLogout}>Log out</Button>):(<Button color="inherit" onClick={handleLogin}>Login</Button>)}
                 </Toolbar>
             </AppBar>
         </div>
     );
 }
+export default inject('basketStore')(observer((ButtonAppBar)))

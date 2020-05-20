@@ -13,6 +13,7 @@ import history from "../../history";
 import {authUser} from "../../Api/UserApi";
 import {useAuth} from "../../context/auth";
 import {Redirect} from "react-router-dom";
+import {inject,observer} from "mobx-react";
 
 function Copyright() {
     return (
@@ -52,11 +53,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function SignIn() {
+function SignIn(props) {
     const classes = useStyles();
     const [login,setLogin] = useState("");
     const [password,setPassword] = useState("");
-    const {setAuthTokens} = useAuth()
+    //const {setAuthTokens} = useAuth()
     const [isLoggedIn,setLoggedIn] = useState(false)
     async function hundleSubmit(event) {
         event.preventDefault();
@@ -72,7 +73,9 @@ export default function SignIn() {
         }
         else {
             console.log("yes")
-            setAuthTokens(user)
+            //setAuthTokens(user)
+            props.basketStore.setUser(user)
+            console.log(props.basketStore.userIdentity)
             setLoggedIn(true)
             history.push('/user')
         }
@@ -142,3 +145,4 @@ export default function SignIn() {
         </Container>
     );
 }
+export default inject('basketStore')(observer(SignIn))
