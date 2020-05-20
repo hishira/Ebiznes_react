@@ -34,7 +34,8 @@ function App(props) {
         setAuthTokens(data);
     }
     const basketStore = new BasketStore()
-
+    // Zostawiam AuthContext dla pewnosci
+    // W jednym store przechowujemy user i koszyk
     return (
         //<AuthContext.Provider value={{authTokens, setAuthTokens: setTokens}}>
         <Provider basketStore={basketStore}>
