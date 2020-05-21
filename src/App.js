@@ -23,9 +23,9 @@ import PrivateRoute from "./components/PrivateRoute";
 import User from "./components/User/User";
 import MainSite from "./components/MainSite";
 import BasketStore from "./stores/BasketStore";
+import UserStore from "./stores/UserStore";
 import {inject, observer} from 'mobx-react'
 import {Provider} from "mobx-react";
-
 function App(props) {
     const existingTokens = JSON.parse(localStorage.getItem("tokens"));
     const [authTokens, setAuthTokens] = useState(existingTokens);
@@ -33,12 +33,15 @@ function App(props) {
         localStorage.setItem("tokens", JSON.stringify(data));
         setAuthTokens(data);
     }
-    const basketStore = new BasketStore()
     // Zostawiam AuthContext dla pewnosci
     // W jednym store przechowujemy user i koszyk
+    const stores = {
+        userStore: new UserStore(),
+        basketStore: new BasketStore()
+    }
     return (
         //<AuthContext.Provider value={{authTokens, setAuthTokens: setTokens}}>
-        <Provider basketStore={basketStore}>
+        <Provider {...stores}>
             <div className="App">
                 <Header/>
                 <Route exact path='/' component={MainSite}/>

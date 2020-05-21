@@ -33,8 +33,8 @@ class Products extends Component{
                             <div>{p.producer}</div>
                             <Button onClick={this.updateClickHandle.bind(this,p.id)}>Update</Button>
                             <Button onClick={this.deleteHandle.bind(this,p.id)}>Delete</Button>
-                            {this.props.basketStore.userIdentity?
-                                (<Button onClick={()=>this.props.basketStore.addProductToBasket(p)}>Add do cart</Button>):(<div></div>)
+                            {this.props.userStore.userIdentity?
+                                (<Button onClick={()=>this.props.basket.addProductToBasket(p)}>Add do cart</Button>):(<div></div>)
                             }
                         </div>
                     )
@@ -53,4 +53,7 @@ class Products extends Component{
         )
     }
 }
-export default inject('basketStore')(observer(Products))
+export default inject(stores => ({
+    basket: stores.basketStore,
+    userStore: stores.userStore
+}))(observer(Products))

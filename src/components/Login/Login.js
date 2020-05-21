@@ -74,8 +74,8 @@ function SignIn(props) {
         else {
             console.log("yes")
             //setAuthTokens(user)
-            props.basketStore.setUser(user)
-            console.log(props.basketStore.userIdentity)
+            props.userStore.setUser(user)
+            console.log(props.userStore.userIdentity)
             setLoggedIn(true)
             history.push('/user')
         }
@@ -145,4 +145,6 @@ function SignIn(props) {
         </Container>
     );
 }
-export default inject('basketStore')(observer(SignIn))
+export default inject(stores => ({
+    userStore: stores.userStore
+}))(observer(SignIn))

@@ -15,7 +15,7 @@ function User(props) {
 
     useEffect(() => {
             const fetchData = async () => {
-                const res = await getUserById(props.basketStore.userIdentity.id)
+                const res = await getUserById(props.userStore.userIdentity.id)
                 setUser(res)
             }
             fetchData()
@@ -37,4 +37,6 @@ function User(props) {
 
 }
 
-export default inject('basketStore')(observer(User))
+export default inject(stores => ({
+    userStore: stores.userStore
+}))(observer(User))

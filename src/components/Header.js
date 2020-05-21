@@ -42,7 +42,7 @@ function ButtonAppBar(props) {
         setAnchorEl(null);
     };
     const handleLogout = () =>{
-        props.basketStore.setUser(null)
+        props.userStore.setUser(null)
         history.push('/')
     }
     return (
@@ -66,12 +66,15 @@ function ButtonAppBar(props) {
                     <Typography variant="h6" className={classes.title}>
                         E-Sklep
                     </Typography>
-                    {props.basketStore.userIdentity?(<CartBadge/>):(<div></div>)}
-                    {props.basketStore.userIdentity?
+                    {props.userStore.userIdentity?(<CartBadge/>):(<div></div>)}
+                    {props.userStore.userIdentity?
                         (<Button color="inherit" onClick={handleLogout}>Log out</Button>):(<Button color="inherit" onClick={handleLogin}>Login</Button>)}
                 </Toolbar>
             </AppBar>
         </div>
     );
 }
-export default inject('basketStore')(observer((ButtonAppBar)))
+export default inject(stores => ({
+    basketStore: stores.basketStore,
+    userStore: stores.userStore
+}))(observer((ButtonAppBar)))

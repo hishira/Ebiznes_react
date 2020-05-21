@@ -26,4 +26,6 @@ function CartBadge(props) {
         </IconButton>
     );
 }
-export default inject('basketStore')(observer(CartBadge))
+export default inject(stores => ({
+    basketStore: stores.basketStore
+}))(observer(CartBadge))

@@ -8,7 +8,7 @@ function PrivateRoute({component:Component,...rest}){
     return (
         <Route
             {...rest} render={(props)=>
-            rest.basketStore.userIdentity? (
+            rest.userStore.userIdentity? (
             <Component {...props}/>
             ):(
                 <Redirect to='/login'/>
@@ -16,4 +16,6 @@ function PrivateRoute({component:Component,...rest}){
         }/>
     )
 }
-export default inject('basketStore')(observer(PrivateRoute))
+export default inject(stores => ({
+    userStore: stores.userStore
+}))(observer(PrivateRoute))

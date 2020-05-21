@@ -1,7 +1,6 @@
 import {observable, computed, reaction, action, decorate} from 'mobx';
 
 export default class BasketStore{
-    basket = observable([])
     constructor(rootStore) {
         this.rootStore = rootStore
     }
