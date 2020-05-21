@@ -11,6 +11,7 @@ class Products extends Component{
         }
         this.updateClickHandle = this.updateClickHandle.bind(this)
         this.deleteHandle = this.deleteHandle.bind(this)
+        this.addCart = this.addCart.bind(this)
     }
     async deleteHandle(id){
         await deleteProduct(id)
@@ -18,6 +19,10 @@ class Products extends Component{
     }
     updateClickHandle(id){
         history.push(`/updateproduct/${id}`)
+    }
+    addCart(e,p){
+        e.preventDefault()
+        this.props.basket.addProductToBasket(p)
     }
     async componentDidMount() {
         await getProducts()
@@ -33,9 +38,7 @@ class Products extends Component{
                             <div>{p.producer}</div>
                             <Button onClick={this.updateClickHandle.bind(this,p.id)}>Update</Button>
                             <Button onClick={this.deleteHandle.bind(this,p.id)}>Delete</Button>
-                            {this.props.userStore.userIdentity?
-                                (<Button onClick={()=>this.props.basket.addProductToBasket(p)}>Add do cart</Button>):(<div></div>)
-                            }
+                            <Button onClick={()=>this.props.basket.addProductToBasket(p)}>Add do cart</Button>
                         </div>
                     )
                 })

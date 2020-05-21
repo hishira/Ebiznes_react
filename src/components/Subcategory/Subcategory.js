@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import ActiveLastBreadcrumb from "../Breadcumb";
 import history from "../../history";
-
+import '../Category/Categories.css'
 class Subcategory extends Component{
     constructor() {
         super();
@@ -34,10 +34,10 @@ class Subcategory extends Component{
                     <ActiveLastBreadcrumb alldata={[{name:"Home"},{name:"Kategorie"}]}/>
                 </div>
                 <h1>Podkategorie: </h1>
-                <div >
+                <div className="categories">
                     {this.state.subcategories.map(cat=>{
                         return (
-                            <Card onClick={this.handleClick.bind(this,cat.id)} key={cat.id} >
+                            <Card onClick={this.handleClick.bind(this,cat.id)} key={cat.id} className="root" >
                                 <CardActionArea>
                                     <CardContent key={cat.id}>
                                         <Typography  gutterBottom variant="h5" component="h2">

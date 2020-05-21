@@ -12,7 +12,7 @@ import history from '../history'
 import {useAuth} from "../context/auth";
 import CartBadge from "./CartBadge";
 import {inject,observer} from "mobx-react";
-
+import Cookies from 'js-cookie'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -43,7 +43,12 @@ function ButtonAppBar(props) {
     };
     const handleLogout = () =>{
         props.userStore.setUser(null)
+        Cookies.remove('user')
+
         history.push('/')
+    }
+    const handleProdukty = ()=>{
+        history.push('/products')
     }
     return (
         <div className={classes.root}>
@@ -61,12 +66,13 @@ function ButtonAppBar(props) {
                         onClose={handleClose}
                     >
                         <MenuItem onClick={handleKategorie}>Kategorie</MenuItem>
+                        <MenuItem onClick={handleProdukty}>Produkty</MenuItem>
                         <MenuItem onClick={handleClose}>Kontakt</MenuItem>
                     </Menu>
                     <Typography variant="h6" className={classes.title}>
                         E-Sklep
                     </Typography>
-                    {props.userStore.userIdentity?(<CartBadge/>):(<div></div>)}
+                    <CartBadge/>
                     {props.userStore.userIdentity?
                         (<Button color="inherit" onClick={handleLogout}>Log out</Button>):(<Button color="inherit" onClick={handleLogin}>Login</Button>)}
                 </Toolbar>

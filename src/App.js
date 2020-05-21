@@ -26,6 +26,7 @@ import BasketStore from "./stores/BasketStore";
 import UserStore from "./stores/UserStore";
 import {inject, observer} from 'mobx-react'
 import {Provider} from "mobx-react";
+import Cookies from 'js-cookie'
 function App(props) {
     const existingTokens = JSON.parse(localStorage.getItem("tokens"));
     const [authTokens, setAuthTokens] = useState(existingTokens);
@@ -36,7 +37,7 @@ function App(props) {
     // Zostawiam AuthContext dla pewnosci
     // W jednym store przechowujemy user i koszyk
     const stores = {
-        userStore: new UserStore(),
+        userStore: new UserStore(Cookies.getJSON('user')),
         basketStore: new BasketStore()
     }
     return (

@@ -11,10 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import history from "../../history";
 import {authUser} from "../../Api/UserApi";
-import {useAuth} from "../../context/auth";
-import {Redirect} from "react-router-dom";
 import {inject,observer} from "mobx-react";
-
+import Cookies from 'js-cookie'
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -75,6 +73,8 @@ function SignIn(props) {
             console.log("yes")
             //setAuthTokens(user)
             props.userStore.setUser(user)
+            Cookies.set('user',user)
+            console.log(Cookies.get('user'))
             console.log(props.userStore.userIdentity)
             setLoggedIn(true)
             history.push('/user')

@@ -1,0 +1,21 @@
+.basketFormat{
+    display: flex;
+    flex-direction: column;
+}
+.product{
+    border: 1px solid whitesmoke;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    width: 30%;
+    box-sizing: border-box;
+    padding: 1.5rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+.product-info{
+    line-height: 1.5rem;
+}
+.delete-icon{
+    margin-left: 2rem;
+}

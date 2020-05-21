@@ -54,21 +54,23 @@ class Categories extends Component {
                         return (
                             <Card  key={cat.id} className="root">
                                 <CardActionArea>
-                                    <CardContent key={cat.id}>
-                                        <Typography onClick={this.handleClick.bind(this, cat.id)} gutterBottom variant="h5" component="h2">
+                                    <CardContent onClick={this.handleClick.bind(this, cat.id)} key={cat.id}>
+                                        <Typography  gutterBottom variant="h5" component="h2">
                                             {cat.name}
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
                                             {cat.description}
                                         </Typography>
-                                        <Button
-                                            onClick={this.handleUpdate.bind(this,cat.id)}
-                                        >
-                                            Update
-                                        </Button>
-                                        <Button onClick={this.handleDelete.bind(this,cat.id)}>
+                                        {/*
+                                            <Button
+                                                onClick={this.handleUpdate.bind(this, cat.id)}
+                                            >
+                                                Update
+                                            </Button>
+                                            <Button onClick={this.handleDelete.bind(this, cat.id)}>
                                             Delete
-                                        </Button>
+                                            </Button>
+                                        */}
                                     </CardContent>
                                 </CardActionArea>
                             </Card>

@@ -20,7 +20,7 @@ const StyledBadge = withStyles((theme) => ({
 
 function CartBadge(props) {
     const clickHandle = ()=>{
-        history.push('/currentbasket')
+        history.push('/basket')
     }
     return (
         <IconButton className={StyledBadge.cart} onClick={clickHandle} aria-label="cart">
