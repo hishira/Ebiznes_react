@@ -10,7 +10,6 @@ class UserComponent extends React.Component{
             <div>
                 <Route path='/users' component={Users}/>
                 <Route path='/user/:id' component={User}/>
-                <Route path='/userupdate/:id' component={UserUpdateForm}/>
             </div>
         );
     }

@@ -18,15 +18,14 @@ import DeliverComponent from "./components/Deliver/DeliverComponent";
 import UserComponent from "./components/User/UserComponent";
 import BasketComponent from "./components/Basket/BasketComponent";
 import OrderComponent from "./components/Order/OrderComponent";
-import {AuthContext} from "./context/auth";
 import PrivateRoute from "./components/PrivateRoute";
 import User from "./components/User/User";
 import MainSite from "./components/MainSite";
 import BasketStore from "./stores/BasketStore";
 import UserStore from "./stores/UserStore";
-import {inject, observer} from 'mobx-react'
 import {Provider} from "mobx-react";
 import Cookies from 'js-cookie'
+import FinalizeCart from "./components/Order/FinalizeBasket";
 function App(props) {
     const existingTokens = JSON.parse(localStorage.getItem("tokens"));
     const [authTokens, setAuthTokens] = useState(existingTokens);
@@ -59,6 +58,7 @@ function App(props) {
                 <BasketComponent/>
                 <OrderComponent/>
                 <PrivateRoute path='/user' component={User}/>
+                <PrivateRoute path='/finalizeoffer/:id' component={FinalizeCart}/>
             </div>
         </Provider>
         //</AuthContext.Provider>

@@ -40,6 +40,9 @@ export default class BasketStore {
     addProductToBasket(product) {
         this.basket.push(product)
     }
+    removeBasket(){
+        this.basket.length = 0
+    }
     removeProduct(product){
         let idToRemove = -1
         for(let i=0;i<this.basket.length;i++){

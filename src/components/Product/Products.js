@@ -36,8 +36,10 @@ class Products extends Component{
                             <div>{p.cost}</div>
                             <div>{p.count}</div>
                             <div>{p.producer}</div>
+                            {/*
                             <Button onClick={this.updateClickHandle.bind(this,p.id)}>Update</Button>
                             <Button onClick={this.deleteHandle.bind(this,p.id)}>Delete</Button>
+                            */}
                             <Button onClick={()=>this.props.basket.addProductToBasket(p)}>Add do cart</Button>
                         </div>
                     )

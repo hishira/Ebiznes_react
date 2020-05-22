@@ -1,6 +1,8 @@
 .basketFormat{
     display: flex;
     flex-direction: column;
+    justify-items: center;
+    align-items: center;
 }
 .product{
     border: 1px solid whitesmoke;
@@ -12,10 +14,25 @@
     padding: 1.5rem;
     margin-right: auto;
     margin-left: auto;
+    flex-direction: column;
 }
 .product-info{
     line-height: 1.5rem;
 }
-.delete-icon{
-    margin-left: 2rem;
+.order{
+    display: flex;
+    flex-direction: column;
+}
+.FormControl{
+    margin-top: 2rem!important;
+}
+.price{
+    font-size: 2rem;
+}
+.orderbutton{
+    width: 30%;
+    margin-top: 2rem!important;
+    margin-bottom: 2rem!important;
+    margin-left: auto!important;
+    margin-right: auto!important;
 }
