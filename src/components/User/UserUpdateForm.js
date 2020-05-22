@@ -43,7 +43,7 @@ class UserUpdateForm extends React.Component {
     }
 
     render() {
-        const {styles} = this.props;
+
         return (
             <Container component="main" maxWidth="xs">
                 <div >

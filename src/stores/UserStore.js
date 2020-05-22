@@ -1,4 +1,4 @@
-import {observable, computed, reaction, action, decorate} from 'mobx';
+import {observable, computed, action, decorate} from 'mobx';
 
 export default class UserStore{
 

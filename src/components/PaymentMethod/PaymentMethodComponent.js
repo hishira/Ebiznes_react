@@ -3,7 +3,7 @@ import {Route} from "react-router-dom";
 import PaymentMethods from "./PaymentMethods";
 import PaymentMethod from "./PaymentMethod";
 import PaymentMethodForm from "./PaymentmethodForm";
-import PaymentMethodUpdateForm from "./UpdateFormPaymentMethod";
+import PaymentMethodUpdateForm from "./PaymentMethodUpdateForm";
 
 class PaymentMethodComponent extends React.Component{
     render() {

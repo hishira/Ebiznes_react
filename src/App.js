@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
     Route,
 
@@ -7,7 +7,7 @@ import './App.css';
 
 import Header from "./components/Header";
 import Login from "./components/Login/Login";
-import Register from "./components/Login/Register";
+import Register from "./components/Login/SignUp";
 import CategoryComponent from "./components/Category/CategoryComponent";
 import SubcategoryComponent from "./components/Subcategory/SubcategoryComponent";
 import ProductComponent from "./components/Product/ProductComponent";
@@ -27,12 +27,14 @@ import {Provider} from "mobx-react";
 import Cookies from 'js-cookie'
 import FinalizeCart from "./components/Order/FinalizeBasket";
 function App(props) {
+    /*
     const existingTokens = JSON.parse(localStorage.getItem("tokens"));
     const [authTokens, setAuthTokens] = useState(existingTokens);
     const setTokens = (data = false) => {
         localStorage.setItem("tokens", JSON.stringify(data));
         setAuthTokens(data);
     }
+     */
     // Zostawiam AuthContext dla pewnosci
     // W jednym store przechowujemy user i koszyk
     const stores = {

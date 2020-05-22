@@ -1,5 +1,4 @@
 import React from "react";
-import {getUsers} from "../../Api/UserApi";
 import {getProducts} from "../../Api/Products";
 import history from "../../history";
 import Container from "@material-ui/core/Container";

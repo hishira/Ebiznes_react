@@ -1,4 +1,4 @@
-import {observable, computed, reaction, action, decorate, toJS, autorun} from 'mobx';
+import {observable, computed, action, decorate, toJS, autorun} from 'mobx';
 
 function autosave(store, save) {
     let firstrun = true

@@ -117,7 +117,6 @@ class ProductForm extends React.Component {
                         variant="outlined"
                         margin="normal"
                         name='producer'
-                        id='producer'
                         fullWidth
                         multiline
                         required
@@ -158,6 +157,7 @@ class ProductForm extends React.Component {
                                         {subccat.name}
                                     </MenuItem>
                                 )
+                            return(<div></div>)
                         })}
                     </Select>
                     <Button

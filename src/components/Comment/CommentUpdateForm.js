@@ -4,8 +4,6 @@ import history from "../../history";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 
 class CommentUpdateForm extends React.Component {
     constructor() {

@@ -9,7 +9,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import history from '../history'
-import {useAuth} from "../context/auth";
 import CartBadge from "./CartBadge";
 import {inject,observer} from "mobx-react";
 import Cookies from 'js-cookie'

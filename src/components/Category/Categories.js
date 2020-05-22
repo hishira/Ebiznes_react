@@ -6,8 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import './Categories.css'
 import history from "../../history";
-import ActiveLastBreadcrumb from "../Breadcumb";
-import Button from '@material-ui/core/Button';
+import ActiveLastBreadcrumb from "../ActiveLastBreadcrumb";
 
 class Categories extends Component {
     constructor() {

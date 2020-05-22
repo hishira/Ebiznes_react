@@ -35,7 +35,7 @@ function CurrentBasket(props) {
         await addProductBasket({
             'basket_id': dane.id,
             'arrayofid': arrayOfId
-        }).then(dane=>console.log(dane))
+        }).then(resfordatabase=>console.log(resfordatabase))
         console.log(newbasket)
         history.push(`/finalizeoffer/${dane.id}`)
     }

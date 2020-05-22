@@ -55,8 +55,6 @@ function SignIn(props) {
     const classes = useStyles();
     const [login,setLogin] = useState("");
     const [password,setPassword] = useState("");
-    //const {setAuthTokens} = useAuth()
-    const [isLoggedIn,setLoggedIn] = useState(false)
     async function hundleSubmit(event) {
         event.preventDefault();
         const data = {login:login,password:password}
@@ -71,12 +69,10 @@ function SignIn(props) {
         }
         else {
             console.log("yes")
-            //setAuthTokens(user)
             props.userStore.setUser(user)
             Cookies.set('user',user)
             console.log(Cookies.get('user'))
             console.log(props.userStore.userIdentity)
-            setLoggedIn(true)
             history.push('/user')
         }
 

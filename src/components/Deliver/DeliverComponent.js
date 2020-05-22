@@ -2,7 +2,7 @@ import React from "react"
 import {Route} from "react-router-dom";
 import Delivers from "./Delivers";
 import Deliver from "./Deliver";
-import DeliverUpdateForm from "./UpdateFormDeliver";
+import DeliverUpdateForm from "./DeliverUpdateForm";
 import DeliverForm from "./DeliverForm";
 
 class DeliverComponent extends React.Component {

@@ -102,7 +102,6 @@ class ProductUpdateForm extends React.Component{
                         variant="outlined"
                         margin="normal"
                         name='producer'
-                        id='producer'
                         fullWidth
                         placeholder={this.state.producer}
                         multiline

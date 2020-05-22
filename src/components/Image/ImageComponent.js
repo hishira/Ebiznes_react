@@ -2,7 +2,7 @@ import React from "react";
 import {Route} from "react-router-dom";
 import Images from "./Images";
 import Image from "./Image";
-import ImageUpdateForm from "./UpdateFormImage";
+import ImageUpdateForm from "./ImageUpdateForm";
 import ImageForm from "./ImageForm";
 
 class ImageComponent extends React.Component{

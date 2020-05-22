@@ -3,7 +3,7 @@ import {Route} from "react-router-dom";
 import Categories from "./Categories";
 import Category from "./Category";
 import CategoryForm from "./CategoryForm";
-import CategoryUpdateForm from "./UpdateFormCategory";
+import CategoryUpdateForm from "./CategoryUpdateForm";
 import Subcategory from "../Subcategory/Subcategory";
 
 class CategoryComponent extends React.Component{

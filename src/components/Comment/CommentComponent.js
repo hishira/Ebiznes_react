@@ -2,7 +2,7 @@ import React from "react";
 import {Route} from "react-router-dom";
 import Comments from "./Comments";
 import Comment from "./Comment";
-import CommentUpdateForm from "./UpdateFormComment";
+import CommentUpdateForm from "./CommentUpdateForm";
 import CommentForm from "./CommentForm";
 
 class CommentComponent extends React.Component{

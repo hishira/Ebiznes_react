@@ -2,7 +2,6 @@ import React from "react";
 import {Route} from "react-router-dom";
 import Users from "./Users";
 import User from "./User";
-import UserUpdateForm from "./UpdateFormUser";
 
 class UserComponent extends React.Component{
     render() {

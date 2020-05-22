@@ -4,7 +4,7 @@ import ProductsBySubcategory from "../Product/ProductBySubcategory";
 import Subcategories from "./Subcategories";
 import Subcategoryid from "./Subcategoryid";
 import SubcategoryForm from "./SubcategoryForm";
-import SubcategoryUpdateForm from "./UpdateFormSubcategory";
+import SubcategoryUpdateForm from "./SubcategoryUpdateForm";
 
 class SubcategoryComponent extends React.Component {
     render() {

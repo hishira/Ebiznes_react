@@ -3,7 +3,7 @@ import {Route} from "react-router-dom";
 import Products from "./Products";
 import Product from "./Product";
 import ProductForm from "./ProductForm";
-import ProductUpdateForm from "./UpdateFormProduct";
+import ProductUpdateForm from "./ProductUpdateForm";
 
 class ProductComponent extends React.Component{
     render() {

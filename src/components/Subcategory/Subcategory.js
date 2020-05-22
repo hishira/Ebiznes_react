@@ -5,7 +5,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import ActiveLastBreadcrumb from "../Breadcumb";
+import ActiveLastBreadcrumb from "../ActiveLastBreadcrumb";
 import history from "../../history";
 import '../Category/Categories.css'
 class Subcategory extends Component{

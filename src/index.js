@@ -5,7 +5,6 @@ import App from './App';
 import {Router} from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
 import history from './history'
-import BasketStore from "./stores/BasketStore";
 ReactDOM.render(
     <Router history={history}>
         <App/>
