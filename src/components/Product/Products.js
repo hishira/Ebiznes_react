@@ -29,13 +29,14 @@ class Products extends Component{
             .then(response=>{
                 let prod = response.map(p=>{
                     return(
-                        <div key={p.id}>
+                        <div style={{display:"flex",flexDirection:"column"}} key={p.id}>
                             <div>
                                 {p.name}
                             </div>
                             <div>{p.cost}</div>
                             <div>{p.count}</div>
                             <div>{p.producer}</div>
+                            <Button onClick={()=>history.push(`/product/${p.id}`)}>Go to more detail</Button>
                             {/*
                             <Button onClick={this.updateClickHandle.bind(this,p.id)}>Update</Button>
                             <Button onClick={this.deleteHandle.bind(this,p.id)}>Delete</Button>

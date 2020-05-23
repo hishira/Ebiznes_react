@@ -20,5 +20,9 @@ async function deleteComment(id) {
     let url = createApiLinkById("deletecommentjson",id)
     return await fetch(url,fetchObjectDelete)
 }
+async function getCommentByProductId(id) {
+    let url = createApiLinkById("commentbyprod",id)
+    return await fetch(url,fetchObject).then(dane=>dane.json())
+}
 
-export {getComments,getCommentById,createComment,updateComment,deleteComment}
+export {getComments,getCommentById,createComment,updateComment,deleteComment,getCommentByProductId}
