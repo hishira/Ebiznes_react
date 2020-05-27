@@ -12,6 +12,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle'
 import {createComment} from "../../Api/CommentApi";
+import {getImageByProductId} from "../../Api/ImagesApi";
+import { makeStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridImageProduct from "./GridImageProduct";
 
 class Product extends React.Component {
     constructor() {
@@ -22,7 +27,8 @@ class Product extends React.Component {
             comment: [],
             open: false,
             commentTitle: "",
-            commentContent: ""
+            commentContent: "",
+            images: []
         }
         this.handleopendialog = this.handleopendialog.bind(this)
         this.handleclosedialog = this.handleclosedialog.bind(this)
@@ -38,8 +44,6 @@ class Product extends React.Component {
         this.setState({open: false})
     }
     async handleAddComment(){
-        console.log(this.state.commentTitle)
-        console.log(this.state.commentContent)
         await createComment({
             title: this.state.commentTitle,
             content: this.state.commentContent,
@@ -47,7 +51,6 @@ class Product extends React.Component {
             user_id: this.props.user.userIdentity.id
         })
         await getCommentByProductId(this.state.productId).then(dane => {
-            console.log(dane)
             let result = dane.map(comment => {
                 return (
                     <div className='comment'>
@@ -68,7 +71,6 @@ class Product extends React.Component {
     async componentDidMount() {
         const {match: {params}} = this.props
         await getProductById(params.id).then(dane => {
-            console.log(dane)
             this.setState({productId:dane.id})
             let com = [dane].map(d => {
                 return (
@@ -94,6 +96,10 @@ class Product extends React.Component {
             this.setState({product: com})
 
         }).catch(e => this.setState({product: []}))
+        await getImageByProductId(params.id).then(dane=>{
+            this.setState({images:dane})
+        })
+        console.log(this.state.images)
         await getCommentByProductId(params.id).then(dane => {
             console.log(dane)
             let result = dane.map(comment => {
@@ -115,6 +121,10 @@ class Product extends React.Component {
     render() {
         return (
             <div>
+                {
+                    this.state.images.length?
+                        (<GridImageProduct images={this.state.images}/>):(<></>)
+                }
                 {this.state.product}
                 <div className='comments'>
                     <div className='comments-title'>Komentarze</div>

@@ -1,0 +1,27 @@
+.products {
+    border: 2px solid black;
+    margin: 2rem;
+    display: flex;
+    box-sizing: border-box;
+    padding: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.productComponent {
+    flex: 1 1 33%;
+    border: 2px solid #ced4da;
+    margin: 1.5rem .5rem;
+    padding: 1rem;
+    border-radius: 15px;
+}
+.buttonProduct{
+    background-color: lightgrey !important;
+    margin: 1rem!important;
+}
+.productInfo{
+    padding: 1rem;
+    border: 1px solid lightcoral;
+    border-radius: 15px;
+}

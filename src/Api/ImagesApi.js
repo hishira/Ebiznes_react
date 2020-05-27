@@ -8,6 +8,10 @@ async function getImagesById(id) {
     let url = createApiLinkById("imagesjson",id)
     return await fetch(url,fetchObject).then(dane=>dane.json())
 }
+async function getImageByProductId(id){
+    let url = createApiLinkById("imagebyprodidjson",id)
+    return await fetch(url,fetchObject).then(dane=>dane.json())
+}
 async function createImage(obj) {
     let url = createApiLink('imagecreatejson')
     return await fetch(url,createFetchObject(obj))
@@ -20,4 +24,4 @@ async function deleteImage(id){
     let url = createApiLinkById("deleteimagejson",id)
     return await fetch(url,fetchObjectDelete)
 }
-export {getImages,getImagesById,createImage,updateImage,deleteImage}
+export {getImages,getImagesById,createImage,updateImage,deleteImage,getImageByProductId}
