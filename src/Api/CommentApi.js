@@ -1,4 +1,4 @@
-import {fetchObject,createFetchObject,createApiLink,createApiLinkById,fetchObjectDelete} from "./ApiConfig";
+import {fetchObject,createFetchObject,createApiLink,createApiLinkById,fetchObjectDelete,createFetchObjectWithToken} from "./ApiConfig";
 
 async function getComments(){
     let url = createApiLink("commentsjson")
@@ -8,9 +8,9 @@ async function getCommentById(id) {
     let url = createApiLinkById("commentsjson",id)
     return await fetch(url,fetchObject).then(dane=>dane.json())
 }
-async function createComment(obj){
+async function createComment(obj,token){
     let url = createApiLink('commentcreatejson')
-    return await fetch(url,createFetchObject(obj))
+    return await fetch(url,createFetchObjectWithToken(obj,token))
 }
 async function updateComment(id,obj){
     let url = createApiLinkById('updatecommentjson',id)

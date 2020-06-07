@@ -13,6 +13,7 @@ import history from "../../history";
 import {authUser} from "../../Api/UserApi";
 import {inject,observer} from "mobx-react";
 import Cookies from 'js-cookie'
+import SocialLoginButton from "./SocialLoginButton";
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
@@ -100,6 +101,7 @@ function SignIn(props) {
                         autoComplete="email"
                         autoFocus
                         onChange={(event)=>setLogin(event.target.value)}
+                        disabled={true}
                     />
                     <TextField
                         variant="outlined"
@@ -112,6 +114,7 @@ function SignIn(props) {
                         id="password"
                         autoComplete="current-password"
                         onChange={(event)=>setPassword(event.target.value)}
+                        disabled={true}
                     />
 
                     <Button
@@ -120,6 +123,7 @@ function SignIn(props) {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        disabled={true}
                     >
                         Sign In
                     </Button>
@@ -129,6 +133,7 @@ function SignIn(props) {
                         color="#ff5722"
                         className={classes.buttonColor}
                         onClick={singUpHandle}
+                        disabled={true}
                     >
                         Sign Up
                     </Button>
@@ -138,6 +143,11 @@ function SignIn(props) {
             <Box mt={8}>
                 <Copyright />
             </Box>
+            <div>
+                <SocialLoginButton provider={"google"} title="Login with google"/>
+                    <SocialLoginButton provider={"facebook"} title="Login with facebook"/>
+                <SocialLoginButton provider={"github"} title="Login with github"/>
+            </div>
         </Container>
     );
 }

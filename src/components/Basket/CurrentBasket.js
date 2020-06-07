@@ -24,8 +24,8 @@ function CurrentBasket(props) {
             return
         }
         let dane = await createBasket({description:"",
-        user_id:props.user.userIdentity.id
-        }).then(res=>res.json())
+        user_id:props.user.userIdentity.id,
+        },props.user.userIdentity.token).then(res=>res.json())
         console.log(dane)
         setNewBasket(dane)
         let arrayOfId = []

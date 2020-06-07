@@ -13,9 +13,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle'
 import {createComment} from "../../Api/CommentApi";
 import {getImageByProductId} from "../../Api/ImagesApi";
-import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
+
 import GridImageProduct from "./GridImageProduct";
 
 class Product extends React.Component {
@@ -49,7 +47,7 @@ class Product extends React.Component {
             content: this.state.commentContent,
             product_id: this.state.productId,
             user_id: this.props.user.userIdentity.id
-        })
+        },this.props.user.userIdentity.token)
         await getCommentByProductId(this.state.productId).then(dane => {
             let result = dane.map(comment => {
                 return (
@@ -104,7 +102,7 @@ class Product extends React.Component {
             console.log(dane)
             let result = dane.map(comment => {
                 return (
-                    <div className='comment'>
+                    <div className='comment' key={comment.id}>
                         <div className='comment-title'>
                             {comment.title}
                         </div>

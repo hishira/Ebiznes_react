@@ -1,7 +1,7 @@
 .root{
     max-width: 345px;
     margin-top: 1rem;
-    flex: 0 1 calc(20% - 8px);
+    flex: 0 1 calc(30% - 8px);
 }
 .media{
     height: 140px;
@@ -14,6 +14,7 @@
     flex-flow: row wrap;
     justify-content: space-around;
     position: relative;
+    font-size: 1rem;
 }
 .breadcumb{
     display: flex;

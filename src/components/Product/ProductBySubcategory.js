@@ -9,22 +9,36 @@ import '../Category/Categories.css'
 import Button from "@material-ui/core/Button";
 import {inject, observer} from "mobx-react";
 import history from "../../history";
-
+import {getImages} from "../../Api/ImagesApi";
+import CardMedia from "@material-ui/core/CardMedia";
 class ProductsBySubcategory extends Component {
     constructor() {
         super();
         this.state = {
-            prodsubcat: []
+            prodsubcat: [],
+            images: [],
         }
+        this.getImages = this.getImages.bind(this)
     }
 
     async componentDidMount() {
         const {match: {params}} = this.props
         getProductsBySubCategoryId(params.id).then(dane => {
-            console.log(dane)
             this.setState({prodsubcat: dane})
         })
+        getImages().then(dane=>{
 
+            this.setState({images: dane})
+        })
+    }
+    getImages(id){
+        for(let i of this.state.images){
+            if(i.productId === id){
+                console.log(i)
+                return i
+            }
+        }
+        return null
     }
 
     render() {
@@ -38,19 +52,27 @@ class ProductsBySubcategory extends Component {
                     {this.state.prodsubcat.map(prod => {
                         return (
                             <div className='product'>
-                                <Card key={prod.id}  className="root">
-                                    <CardActionArea onClick={()=>history.push(`/product/${prod.id}`)}>
+                                <Card key={prod.id} className="root">
+                                    <CardActionArea style={{height:"15rem"}} onClick={() => history.push(`/product/${prod.id}`)}>
+                                        {
+                                            this.getImages(prod.id)?( <img
+                                                style={{height:"60px",width: "60px"}}
+                                                src={`${this.getImages(prod.id).url}`}
+                                              />):(<div/>)
+                                        }
                                         <CardContent key={prod.id}>
-                                            <Typography gutterBottom variant="h5" component="h2">
+                                            <Typography gutterBottom>
                                                 {prod.name}
                                             </Typography>
-                                            <Typography variant="body2" color="textSecondary" component="p">
+                                            <Typography color="textSecondary">
                                                 {prod.description}
                                             </Typography>
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
-                                <Button onClick={()=>{this.props.basket.addProductToBasket(prod)}}>Add to cart</Button>
+                                <Button onClick={() => {
+                                    this.props.basket.addProductToBasket(prod)
+                                }}>Add to cart</Button>
                             </div>
                         )
                     })}

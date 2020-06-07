@@ -26,6 +26,7 @@ import UserStore from "./stores/UserStore";
 import {Provider} from "mobx-react";
 import Cookies from 'js-cookie'
 import FinalizeCart from "./components/Order/FinalizeBasket";
+import OAuth from "./components/Login/OAuth";
 function App(props) {
     /*
     const existingTokens = JSON.parse(localStorage.getItem("tokens"));
@@ -37,8 +38,9 @@ function App(props) {
      */
     // Zostawiam AuthContext dla pewnosci
     // W jednym store przechowujemy user i koszyk
+    let user = window.localStorage.getItem("user")
     const stores = {
-        userStore: new UserStore(Cookies.getJSON('user')),
+        userStore: new UserStore(user? JSON.parse(user):null),
         basketStore: new BasketStore()
     }
     return (
@@ -61,6 +63,7 @@ function App(props) {
                 <OrderComponent/>
                 <PrivateRoute path='/user' component={User}/>
                 <PrivateRoute path='/finalizeoffer/:id' component={FinalizeCart}/>
+                <Route path='/auth/:provider' component={OAuth}/>
             </div>
         </Provider>
         //</AuthContext.Provider>

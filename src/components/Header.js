@@ -12,6 +12,8 @@ import history from '../history'
 import CartBadge from "./CartBadge";
 import {inject,observer} from "mobx-react";
 import Cookies from 'js-cookie'
+import {singOut} from "../Api/AuthApi";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -40,10 +42,11 @@ function ButtonAppBar(props) {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const handleLogout = () =>{
+    const handleLogout = async () =>{
+        await singOut(props.userStore.userIdentity)
         props.userStore.setUser(null)
-        Cookies.remove('user')
-
+        //Cookies.remove('user')
+        window.localStorage.removeItem("user")
         history.push('/')
     }
     const handleProdukty = ()=>{
