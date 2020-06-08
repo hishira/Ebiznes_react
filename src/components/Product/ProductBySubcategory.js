@@ -34,7 +34,6 @@ class ProductsBySubcategory extends Component {
     getImages(id){
         for(let i of this.state.images){
             if(i.productId === id){
-                console.log(i)
                 return i
             }
         }
@@ -55,10 +54,11 @@ class ProductsBySubcategory extends Component {
                                 <Card key={prod.id} className="root">
                                     <CardActionArea style={{height:"15rem"}} onClick={() => history.push(`/product/${prod.id}`)}>
                                         {
-                                            this.getImages(prod.id)?( <img
-                                                style={{height:"60px",width: "60px"}}
-                                                src={`${this.getImages(prod.id).url}`}
-                                              />):(<div/>)
+                                            this.getImages(prod.id)?(
+                                                <CardMedia style={{height: 140,width:"15rem"}}
+                                                        image={this.getImages(prod.id).url}
+                                                />
+                                                        ):(<div/>)
                                         }
                                         <CardContent key={prod.id}>
                                             <Typography gutterBottom>

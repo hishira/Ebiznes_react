@@ -11,6 +11,8 @@ import '../Basket/CurrentBasket.css'
 import {createOrder} from "../../Api/OrderApi";
 import {inject, observer} from "mobx-react";
 import history from "../../history";
+import TextField from "@material-ui/core/TextField";
+import {createAddres} from "../../Api/AddressApi";
 
 class FinalizeCart extends React.Component {
     constructor() {
@@ -24,6 +26,9 @@ class FinalizeCart extends React.Component {
             paymethod: "",
             deliver: "",
             deliverName: "",
+            city: "",
+            street: "",
+            zipCode: ""
         }
         this.paymentcheck = this.paymentcheck.bind(this)
         this.order = this.order.bind(this)
@@ -45,6 +50,12 @@ class FinalizeCart extends React.Component {
             return
         }
         let date = new Date();
+        let adres = await createAddres({
+            city: this.state.city,
+            street: this.state.street,
+            zip_code: this.state.zipCode
+        })
+        console.log(adres)
         let createDate = `${date.getFullYear()}-${(date.getUTCMonth() + 1)}-${date.getUTCDate()}`;
         console.log(createDate)
         await createOrder({
@@ -53,11 +64,11 @@ class FinalizeCart extends React.Component {
             deliverId: this.state.deliver,
             userId: this.props.user.userIdentity.id,
             paymentId: this.state.paymethod,
-            basketId: params.id
+            basketId: params.id,
+            addressId:adres.id
         })
         this.props.basket.removeBasket()
         history.push('/')
-
     }
 
     async componentDidMount() {
@@ -120,6 +131,47 @@ class FinalizeCart extends React.Component {
                             })}
                         </Select>
                     </div>
+                </FormControl>
+                <FormControl>
+                    <FormLabel component='legend'>Adres dostawy: </FormLabel>
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="Miasto"
+                        label="Miasto"
+                        type="city"
+                        id="city"
+                        onChange={(event) => this.setState({city: event.target.value})}
+
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="Ulica"
+                        label="Ulica"
+                        type="street"
+                        id="street"
+                        onChange={(event) => this.setState({street: event.target.value})}
+
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="Ulica"
+                        label="Ulica"
+                        type="street"
+                        id="street"
+                        onChange={(event) => this.setState({zipCode: event.target.value})}
+
+                    />
+
+
                 </FormControl>
                 <div className='price'>Cena : {this.state.newcost}</div>
                 <Button variant='contained' className='orderbutton' color='primary' onClick={this.order}>Zamow</Button>
