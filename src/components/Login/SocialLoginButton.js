@@ -1,16 +1,17 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {authenticate} from "../../Api/AuthApi";
-import {inject,observer} from "mobx-react";
+import {inject, observer} from "mobx-react";
 import Button from "@material-ui/core/Button";
+
 let existingWindow = null;
 
 function SocialLoginButton(props) {
 
     function handleAuthentication() {
         window.socialProviderCallback = async function (socialProvider, queryParams) {
-            console.log(socialProvider,queryParams)
+            console.log(socialProvider, queryParams)
             let user = await authenticate(socialProvider, queryParams);
-            window.localStorage.setItem("user",JSON.stringify(user))
+            window.localStorage.setItem("user", JSON.stringify(user))
             console.log(user)
             props.userStore.setUser(user);
         };
@@ -28,8 +29,8 @@ function SocialLoginButton(props) {
     }
 
     return (
-        <Button style={{margin:"1rem"}} variant="contained" color="secondary"
-            onClick={handleAuthentication}
+        <Button style={{margin: "1rem"}} variant="contained" color="secondary"
+                onClick={handleAuthentication}
         >
             {props.title}
         </Button>

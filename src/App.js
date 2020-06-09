@@ -24,18 +24,9 @@ import MainSite from "./components/MainSite";
 import BasketStore from "./stores/BasketStore";
 import UserStore from "./stores/UserStore";
 import {Provider} from "mobx-react";
-import Cookies from 'js-cookie'
 import FinalizeCart from "./components/Order/FinalizeBasket";
 import OAuth from "./components/Login/OAuth";
 function App(props) {
-    /*
-    const existingTokens = JSON.parse(localStorage.getItem("tokens"));
-    const [authTokens, setAuthTokens] = useState(existingTokens);
-    const setTokens = (data = false) => {
-        localStorage.setItem("tokens", JSON.stringify(data));
-        setAuthTokens(data);
-    }
-     */
     // Zostawiam AuthContext dla pewnosci
     // W jednym store przechowujemy user i koszyk
     let user = window.localStorage.getItem("user")

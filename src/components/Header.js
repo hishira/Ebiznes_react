@@ -11,7 +11,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import history from '../history'
 import CartBadge from "./CartBadge";
 import {inject,observer} from "mobx-react";
-import Cookies from 'js-cookie'
 import {singOut} from "../Api/AuthApi";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 function ButtonAppBar(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    //const {authTokens,setAuthTokens} = useAuth()
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -45,7 +43,6 @@ function ButtonAppBar(props) {
     const handleLogout = async () =>{
         await singOut(props.userStore.userIdentity)
         props.userStore.setUser(null)
-        //Cookies.remove('user')
         window.localStorage.removeItem("user")
         history.push('/')
     }
