@@ -36,6 +36,7 @@ function ButtonAppBar(props) {
     }
     const  handleKategorie = (event) =>{
         history.push('/categories')
+        setAnchorEl(null)
     };
     const handleClose = () => {
         setAnchorEl(null);
@@ -48,6 +49,7 @@ function ButtonAppBar(props) {
     }
     const handleProdukty = ()=>{
         history.push('/products')
+        setAnchorEl(null)
     }
     return (
         <div className={classes.root}>

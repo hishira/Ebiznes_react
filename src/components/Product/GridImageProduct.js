@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
     gridList: {
         flexWrap: 'nowrap',
-        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+
         transform: 'translateZ(0)',
     },
     title: {
@@ -35,7 +35,7 @@ export default function GridImageProduct(props) {
             <GridList  className={classes.gridList} >
                 {props.images.map((tile) => (
                     <GridListTile key={tile.id}>
-                        <img height={160} src={tile.url} alt={tile.id} />
+                        <img height={160} width={250} src={tile.url} alt={tile.id} />
                         <GridListTileBar
                             classes={{
                                 root: classes.titleBar,
