@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -10,8 +10,9 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import history from '../history'
 import CartBadge from "./CartBadge";
-import {inject,observer} from "mobx-react";
+import {inject, observer} from "mobx-react";
 import {singOut} from "../Api/AuthApi";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,6 +24,16 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
     },
+    mainTitle: {
+        border: "1px solid blue",
+        borderRadius: "5px",
+        display: "flex",
+        justifyContent: "center",
+        marginLeft: "auto",
+        width: "45%",
+        marginRight: "auto",
+        cursor: "pointer"
+    }
 }));
 
 function ButtonAppBar(props) {
@@ -31,23 +42,23 @@ function ButtonAppBar(props) {
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleLogin = () =>{
+    const handleLogin = () => {
         history.push('/login')
     }
-    const  handleKategorie = (event) =>{
+    const handleKategorie = (event) => {
         history.push('/categories')
         setAnchorEl(null)
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const handleLogout = async () =>{
+    const handleLogout = async () => {
         await singOut(props.userStore.userIdentity)
         props.userStore.setUser(null)
         window.localStorage.removeItem("user")
         history.push('/')
     }
-    const handleProdukty = ()=>{
+    const handleProdukty = () => {
         history.push('/products')
         setAnchorEl(null)
     }
@@ -57,7 +68,7 @@ function ButtonAppBar(props) {
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
                                 aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                        <MenuIcon />
+                        <MenuIcon/>
                     </IconButton>
                     <Menu
                         id="simple-menu"
@@ -71,16 +82,18 @@ function ButtonAppBar(props) {
                         <MenuItem onClick={handleClose}>Kontakt</MenuItem>
                     </Menu>
                     <Typography variant="h6" className={classes.title}>
-                        E-Sklep
+                        <Box onClick={() => history.push("/")} className={classes.mainTitle}>E-Sklep</Box>
                     </Typography>
                     <CartBadge/>
-                    {props.userStore.userIdentity?
-                        (<Button color="inherit" onClick={handleLogout}>Log out</Button>):(<Button color="inherit" onClick={handleLogin}>Login</Button>)}
+                    {props.userStore.userIdentity ?
+                        (<Button color="inherit" onClick={handleLogout}>Log out</Button>) : (
+                            <Button color="inherit" onClick={handleLogin}>Login</Button>)}
                 </Toolbar>
             </AppBar>
         </div>
     );
 }
+
 export default inject(stores => ({
     basketStore: stores.basketStore,
     userStore: stores.userStore

@@ -54,7 +54,7 @@ class Categories extends Component {
                             <Card  key={cat.id} className="root">
                                 <CardActionArea>
                                     <CardContent onClick={this.handleClick.bind(this, cat.id)} key={cat.id}>
-                                        <Typography  gutterBottom variant="h5" component="h2">
+                                        <Typography  gutterBottom variant="h5" component="h1">
                                             {cat.name}
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">

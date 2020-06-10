@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import './MainSite.css'
 import history from "../history";
+
 class MainSite extends React.Component{
     constructor() {
         super();
@@ -27,7 +28,7 @@ class MainSite extends React.Component{
                 <Card className='Card' onClick={this.handleCatClick.bind(this)} >
                     <CardActionArea >
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
+                            <Typography gutterBottom variant="h6" component="h2">
                                 Kategorie
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
@@ -39,11 +40,11 @@ class MainSite extends React.Component{
                 <Card className='Card'onClick={this.handleProductClick} >
                     <CardActionArea>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
+                            <Typography gutterBottom variant="h6" component="h2">
                                 Produkty
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Nasz sklep zawiera miliony produktów
+                                Nasz sklep zawiera miliony produktów(a dokladnie troche)
                             </Typography>
                         </CardContent>
                     </CardActionArea>
@@ -51,7 +52,7 @@ class MainSite extends React.Component{
                 <Card className='Card' onClick={this.handleInfoClick} >
                     <CardActionArea>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
+                            <Typography gutterBottom variant="h6" component="h2">
                                 Kontakt
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">

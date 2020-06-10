@@ -5,5 +5,6 @@
     flex-wrap: wrap;
 }
 .Card{
-    flex: 0 0 calc(30% - 2rem);
+    flex: 0 0 37%;
+    margin-top: 2rem;
 }

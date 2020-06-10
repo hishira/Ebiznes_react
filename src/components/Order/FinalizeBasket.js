@@ -46,7 +46,8 @@ class FinalizeCart extends React.Component {
         console.log(this.state.deliver)
         console.log(params.id)
         console.log(this.props.user.userIdentity.id)
-        if (this.state.paymethod === "" || this.state.deliver === "") {
+        if (this.state.paymethod === "" || this.state.deliver === "" || this.state.city=== ""
+            || this.state.street === "" || this.state.zipCode === "") {
             alert('Wypelnij ponizsze pola')
             return
         }
@@ -82,7 +83,7 @@ class FinalizeCart extends React.Component {
             cena += parseInt(this.state.products[i][3])
         }
         this.setState({cost: cena})
-        console.log(this.state.cost)
+        this.setState({newcost:this.state.cost})
         let pay = await getPayemntMethods()
         this.setState({paymentMethod: pay})
         let del = await getDelivers()
@@ -125,70 +126,70 @@ class FinalizeCart extends React.Component {
                                 onChange={(e) => {
                                     this.setState({deliverName: e.target.value})
                                     for (let i of this.state.delivers) {
-                                        if (i.name === this.state.deliverName) {
+                                        if (i.name === e.target.value) {
                                             this.setState({
                                                 deliver: i.id,
-                                                newcost: this.state.cost + i.cost})
+                                                newcost: this.state.cost + i.cost
+                                            })
                                             break
                                         }
                                     }
-                                    console.log(this.state.deliverName)
                                 }}>
-                                {this.state.delivers.map(p => {
-                                    return (<MenuItem value={p.name}>{p.name}</MenuItem>)
-                                })}
-                                    </Select>
-                                    </div>
-                                    </FormControl>
-                                    <FormControl style={{marginTop:"3rem"}}>
-                                    <FormLabel component='legend'>Adres dostawy: </FormLabel>
-                                    <TextField
-                                    variant="outlined"
-                                    margin="normal"
-                                    required
-                                    style={this.state.componentStyle}
-                                    name="Miasto"
-                                    label="Miasto"
-                                    type="city"
-                                    id="city"
-                                    onChange={(event) => this.setState({city: event.target.value})}
+                            {this.state.delivers.map(p => {
+                                return (<MenuItem value={p.name}>{p.name}</MenuItem>)
+                            })}
+                        </Select>
+                    </div>
+                </FormControl>
+                <FormControl style={{marginTop: "3rem"}}>
+                    <FormLabel component='legend'>Adres dostawy: </FormLabel>
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        style={this.state.componentStyle}
+                        name="Miasto"
+                        label="Miasto"
+                        type="city"
+                        id="city"
+                        onChange={(event) => this.setState({city: event.target.value})}
 
-                                    />
-                                    <TextField
-                                    variant="outlined"
-                                    margin="normal"
-                                    required
-                                    style={this.state.componentStyle}
-                                    name="Ulica"
-                                    label="Ulica"
-                                    type="street"
-                                    id="street"
-                                    onChange={(event) => this.setState({street: event.target.value})}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        style={this.state.componentStyle}
+                        name="Ulica"
+                        label="Ulica"
+                        type="street"
+                        id="street"
+                        onChange={(event) => this.setState({street: event.target.value})}
 
-                                    />
-                                    <TextField
-                                    variant="outlined"
-                                    margin="normal"
-                                    required
-                                    style={this.state.componentStyle}
-                                    name="Kod pocztowy"
-                                    label="Kod pocztowy"
-                                    type="zip_code"
-                                    id="zip_code"
-                                    onChange={(event) => this.setState({zipCode: event.target.value})}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        style={this.state.componentStyle}
+                        name="Kod pocztowy"
+                        label="Kod pocztowy"
+                        type="zip_code"
+                        id="zip_code"
+                        onChange={(event) => this.setState({zipCode: event.target.value})}
 
-                                    />
+                    />
 
 
-                                    </FormControl>
-                                    <div className='price'>Cena : {this.state.newcost}</div>
-                                    <Button variant='contained' className='orderbutton' color='primary' onClick={this.order}>Zamow</Button>
-                                    </div>
-                                    );
-                                    }
-                                    }
+                </FormControl>
+                <div className='price'>Cena : {this.state.newcost}</div>
+                <Button variant='contained' className='orderbutton' color='primary' onClick={this.order}>Zamow</Button>
+            </div>
+        );
+    }
+}
 
-                                    export default inject(stores => ({
-                                    user: stores.userStore,
-                                    basket: stores.basketStore
-                                    }))(observer(FinalizeCart))
+export default inject(stores => ({
+    user: stores.userStore,
+    basket: stores.basketStore
+}))(observer(FinalizeCart))
