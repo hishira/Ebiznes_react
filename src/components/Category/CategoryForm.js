@@ -3,12 +3,14 @@ import {createCategory} from "../../Api/Categories";
 import Container from "@material-ui/core/Container";
 import history from "../../history";
 import FormInput from "../FormInput";
+import {inject, observer} from "mobx-react";
 class CategoryForm extends React.Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             name: "",
-            description: ""
+            description: "",
+            unauthorized: false
         }
         this.createCateogry = this.createCateogry.bind(this)
     }
@@ -16,7 +18,18 @@ class CategoryForm extends React.Component{
         event.preventDefault()
         console.log("categoru")
         console.log(this.state.name,this.state.description)
-        await createCategory({name:this.state.name,description: this.state.description})
+        await createCategory({id:-1,name:this.state.name,description: this.state.description},this.props.userStore.userIdentity.token)
+            .then(request=> {
+                if (request.status > 400) {
+                    alert("Unauthorized")
+                    this.setState({unauthorized:true})
+                }else{
+                    this.setState({unauthorized:false})
+                }
+            })
+        if (this.state.unauthorized){
+            return
+        }
         history.push('/categories')
     }
     render() {
@@ -34,4 +47,6 @@ class CategoryForm extends React.Component{
         )
     }
 }
-export default CategoryForm
+export default inject(stores => ({
+    userStore: stores.userStore
+}))(observer(CategoryForm))

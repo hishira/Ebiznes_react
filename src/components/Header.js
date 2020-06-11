@@ -13,7 +13,7 @@ import CartBadge from "./CartBadge";
 import {inject, observer} from "mobx-react";
 import {singOut} from "../Api/AuthApi";
 import Box from "@material-ui/core/Box";
-
+import AccountCircle from '@material-ui/icons/AccountCircle';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -86,7 +86,16 @@ function ButtonAppBar(props) {
                     </Typography>
                     <CartBadge/>
                     {props.userStore.userIdentity ?
-                        (<Button color="inherit" onClick={handleLogout}>Log out</Button>) : (
+                        (<div><IconButton
+                            edge="end"
+                            aria-label="account of current user"
+                            aria-haspopup="true"
+                            onClick={()=>history.push('/user')}
+                            color="inherit"
+                        >
+                            <AccountCircle />
+                        </IconButton>
+                            <Button color="inherit" onClick={handleLogout}>Log out</Button></div>) : (
                             <Button color="inherit" onClick={handleLogin}>Login</Button>)}
                 </Toolbar>
             </AppBar>

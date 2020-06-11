@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
-import {getUserById} from "../../Api/UserApi";
 import Button from "@material-ui/core/Button";
 import history from "../../history";
 import {inject,observer} from "mobx-react";
-import Cookies from 'js-cookie'
+import AdminPanel from "./AdminPanel";
+import {singOut} from "../../Api/AuthApi";
 
 
 function User(props) {
@@ -11,25 +11,28 @@ function User(props) {
 
     useEffect(() => {
             const fetchData = async () => {
-                const usercookie = Cookies.getJSON('user')
-                const res = await getUserById(usercookie.id)
+                const res = props.userStore.userIdentity
                 setUser(res)
             }
             fetchData()
         }
     )
-    function logoutButton(){
+    async function logoutButton(){
+        await singOut(props.userStore.userIdentity)
         props.userStore.setUser(null)
-        Cookies.remove('user')
+        window.localStorage.removeItem("user")
         history.push('/')
     }
 
 
     return (
         <div>
-            <div>Witaj {user.login}</div>
+            <div>Witaj {user.firstName}</div>
             <Button onClick={logoutButton}>Log out</Button>
             <Button onClick={()=>history.push('/products')}> Produkty</Button>
+            {
+                user && user.role === "Admin"? (<AdminPanel/>):(<div></div>)
+            }
         </div>
     )
 

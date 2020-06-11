@@ -9,9 +9,11 @@ import Container from "@material-ui/core/Container";
 import NumberFormat from "react-number-format";
 import {createProduct} from "../../Api/Products";
 import history from "../../history";
+import {inject, observer} from "mobx-react";
+
 class ProductForm extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             name: "",
             cost: 0,
@@ -47,18 +49,23 @@ class ProductForm extends React.Component {
         if (this.checkGoodCategories(this.state.categoryId, this.state.subcategoryId))
             return
         await createProduct({
+                id: -1,
                 name: this.state.name,
                 cost: parseInt(this.state.cost),
                 count: parseInt(this.state.count),
                 producer: this.state.producer,
                 categoryId: this.state.categoryId,
                 subcategoryId: this.state.subcategoryId
-            }
+            },this.props.userStore.userIdentity.token
         )
         history.push('/products')
     }
 
     async componentDidMount() {
+        const bb = this.props.userStore.userIdentity && this.props.userStore.userIdentity.role === "Admin"
+        if (!bb) {
+            history.push("/")
+        }
         await getCategories().then(dane => {
             this.setState({categoryId: dane[0].id})
             this.setState({categories: dane})
@@ -157,7 +164,7 @@ class ProductForm extends React.Component {
                                         {subccat.name}
                                     </MenuItem>
                                 )
-                            return(<div></div>)
+                            return (<div></div>)
                         })}
                     </Select>
                     <Button
@@ -175,4 +182,6 @@ class ProductForm extends React.Component {
     }
 }
 
-export default ProductForm
+export default inject(stores => ({
+    userStore: stores.userStore
+}))(observer(ProductForm))

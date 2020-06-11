@@ -45,8 +45,7 @@ class Product extends React.Component {
         await createComment({
             title: this.state.commentTitle,
             content: this.state.commentContent,
-            product_id: this.state.productId,
-            user_id: this.props.user.userIdentity.id
+            product_id: this.state.productId
         },this.props.user.userIdentity.token)
         await getCommentByProductId(this.state.productId).then(dane => {
             let result = dane.map(comment => {

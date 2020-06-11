@@ -3,6 +3,7 @@ import {authenticate} from "../../Api/AuthApi";
 import {inject, observer} from "mobx-react";
 import Button from "@material-ui/core/Button";
 import decode from 'jwt-decode'
+import history from "../../history";
 let existingWindow = null;
 
 function SocialLoginButton(props) {
@@ -12,11 +13,13 @@ function SocialLoginButton(props) {
             console.log(socialProvider, queryParams)
             let user = await authenticate(socialProvider, queryParams);
             window.localStorage.setItem("user", JSON.stringify(user))
-            console.log(new Date(user['expiry+time']).getUTCDate())
+            console.log(new Date(user['expiry+time']).toISOString())
             let confirm = user.token && decode(user.token)
             console.log(confirm)
+            console.log(user)
             console.log(new Date(new Date() + confirm.exp).toISOString())
             props.userStore.setUser(user);
+            history.push('/user')
         };
 
         if (existingWindow) {
