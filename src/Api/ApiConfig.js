@@ -1,4 +1,3 @@
-
 const fetchObject = {
     mode: "cors",
     headers: {
@@ -23,8 +22,9 @@ function createApiLink(sub) {
     return url
 
 }
-function createFetchObject(obj){
-    return  {
+
+function createFetchObject(obj) {
+    return {
         mode: "cors",
         headers: {
             'Accept': 'application/json',
@@ -35,8 +35,9 @@ function createFetchObject(obj){
         body: JSON.stringify(obj)
     }
 }
-function createFetchObjectWithToken(obj,token){
-    return  {
+
+function createFetchObjectWithToken(obj, token) {
+    return {
         mode: "cors",
         headers: {
             'Accept': 'application/json',
@@ -48,7 +49,21 @@ function createFetchObjectWithToken(obj,token){
         body: JSON.stringify(obj)
     }
 }
-function createAuthObject(obj){
+
+function createFetchObjectWithOnlyToken(token) {
+    return {
+        mode: "cors",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'X-Auth-Token': `${token}`
+        },
+        method: "GET"
+    }
+}
+
+function createAuthObject(obj) {
     return {
         mode: "cors",
         headers: {
@@ -59,20 +74,33 @@ function createAuthObject(obj){
         ...obj
     }
 }
-function createAuthFetchObject(obj,token){
+
+function createAuthFetchObject(obj, token) {
     return {
         mode: "cors",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin':'http://localhost:3000',
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
             'X-Auth-Token': `${token}`
         },
         ...obj
     }
 }
-function createApiLinkById(sub,id){
+
+function createApiLinkById(sub, id) {
     let url = `http://localhost:9000/${sub}/${id}`
     return url
 }
-export {fetchObject,createApiLink,createApiLinkById,createFetchObject,fetchObjectDelete,createAuthFetchObject,createAuthObject,createFetchObjectWithToken}
+
+export {
+    fetchObject,
+    createApiLink,
+    createApiLinkById,
+    createFetchObject,
+    fetchObjectDelete,
+    createAuthFetchObject,
+    createAuthObject,
+    createFetchObjectWithToken,
+    createFetchObjectWithOnlyToken
+}

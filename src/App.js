@@ -26,6 +26,7 @@ import UserStore from "./stores/UserStore";
 import {Provider} from "mobx-react";
 import FinalizeCart from "./components/Order/FinalizeBasket";
 import OAuth from "./components/Login/OAuth";
+import ContactPaper from "./components/Contact";
 function App(props) {
     // Zostawiam AuthContext dla pewnosci
     // W jednym store przechowujemy user i koszyk
@@ -52,6 +53,7 @@ function App(props) {
                 <UserComponent/>
                 <BasketComponent/>
                 <OrderComponent/>
+                <Route path='/contact' component={ContactPaper} />
                 <PrivateRoute path='/user' component={User}/>
                 <PrivateRoute path='/finalizeoffer/:id' component={FinalizeCart}/>
                 <Route path='/auth/:provider' component={OAuth}/>

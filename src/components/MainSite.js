@@ -20,7 +20,7 @@ class MainSite extends React.Component{
         history.push('/products')
     }
     handleInfoClick(){
-        history.push('/')
+        history.push('/contact')
     }
     render() {
         return (

@@ -8,7 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from "@material-ui/core/Button";
 import '../Basket/CurrentBasket.css'
-import {createOrder} from "../../Api/OrderApi";
+import {createorderByToken} from "../../Api/OrderApi";
 import {inject, observer} from "mobx-react";
 import history from "../../history";
 import TextField from "@material-ui/core/TextField";
@@ -60,7 +60,7 @@ class FinalizeCart extends React.Component {
         console.log(adres)
         let createDate = `${date.getFullYear()}-${(date.getUTCMonth() + 1)}-${date.getUTCDate()}`;
         console.log(createDate)
-        await createOrder({
+        await createorderByToken({
             date: createDate,
             cost: this.state.newcost,
             deliverId: this.state.deliver,
@@ -68,7 +68,7 @@ class FinalizeCart extends React.Component {
             paymentId: this.state.paymethod,
             basketId: params.id,
             addressId: adres.id
-        })
+        },this.props.user.userIdentity.token)
         this.props.basket.removeBasket()
         history.push('/')
     }

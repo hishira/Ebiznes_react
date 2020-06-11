@@ -50,6 +50,7 @@ function ButtonAppBar(props) {
         setAnchorEl(null)
     };
     const handleClose = () => {
+        history.push('/contact')
         setAnchorEl(null);
     };
     const handleLogout = async () => {
