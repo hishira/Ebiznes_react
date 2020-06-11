@@ -26,7 +26,7 @@ import UserStore from "./stores/UserStore";
 import {Provider} from "mobx-react";
 import FinalizeCart from "./components/Order/FinalizeBasket";
 import OAuth from "./components/Login/OAuth";
-import ContactPaper from "./components/Contact";
+import ContactPaper from "./components/ContactPaper";
 function App(props) {
     // Zostawiam AuthContext dla pewnosci
     // W jednym store przechowujemy user i koszyk

@@ -25,8 +25,6 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     mainTitle: {
-        border: "1px solid blue",
-        borderRadius: "5px",
         display: "flex",
         justifyContent: "center",
         marginLeft: "auto",
